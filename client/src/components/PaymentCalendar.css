@@ -1,0 +1,264 @@
+.payment-calendar {
+  background-color: var(--color-blanco);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.calendar-header {
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+}
+
+.calendar-header h3 {
+  color: var(--color-verde-agua);
+  font-weight: 400;
+  margin: 0 0 var(--spacing-xs) 0;
+  font-size: 1.5rem;
+}
+
+.calendar-subtitle {
+  color: var(--color-gris-oscuro);
+  font-size: 0.9rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.calendar-years-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.calendar-year-group {
+  background-color: var(--color-beige);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+}
+
+.year-title {
+  color: var(--color-verde-agua);
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0 0 var(--spacing-md) 0;
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 2px solid var(--color-verde-agua);
+}
+
+.year-title.current-year {
+  color: var(--color-terracota);
+  border-bottom-color: var(--color-terracota);
+}
+
+.calendar-months {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--spacing-sm);
+}
+
+.calendar-month {
+  position: relative;
+  background-color: var(--color-beige);
+  border: 2px solid transparent;
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-md);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar-month:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-verde-agua);
+}
+
+.calendar-month.selected {
+  background: linear-gradient(135deg, var(--color-verde-agua) 0%, var(--color-terracota) 100%);
+  color: var(--color-blanco);
+  border-color: var(--color-verde-agua);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.month-name {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: var(--spacing-xs);
+}
+
+.calendar-month.current-month {
+  border: 2px solid var(--color-terracota);
+  background-color: rgba(201, 125, 96, 0.1);
+}
+
+.calendar-month.past-month {
+  opacity: 0.6;
+  background-color: var(--color-gris-claro);
+}
+
+.current-indicator {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-terracota);
+  margin-top: var(--spacing-xs);
+  padding: 0.2rem 0.5rem;
+  background-color: rgba(201, 125, 96, 0.15);
+  border-radius: var(--border-radius-sm);
+}
+
+.month-check {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background-color: var(--color-blanco);
+  color: var(--color-verde-agua);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.selected-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  background-color: var(--color-beige);
+  border-radius: var(--border-radius-sm);
+  margin-top: var(--spacing-md);
+}
+
+.selected-summary p {
+  margin: 0;
+  font-weight: 500;
+  color: var(--color-gris-oscuro);
+}
+
+.btn-clear {
+  background-color: transparent;
+  color: var(--color-terracota);
+  border: 1px solid var(--color-terracota);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.btn-clear:hover {
+  background-color: var(--color-terracota);
+  color: var(--color-blanco);
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .payment-calendar {
+    padding: var(--spacing-md);
+  }
+
+  .calendar-header h3 {
+    font-size: 1.3rem;
+  }
+
+  .calendar-months {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .calendar-month {
+    min-height: 70px;
+    padding: var(--spacing-sm);
+  }
+
+  .month-name {
+    font-size: 0.95rem;
+  }
+}
+
+/* Teléfono */
+@media (max-width: 767px) {
+  .payment-calendar {
+    padding: var(--spacing-md);
+  }
+
+  .calendar-header {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .calendar-header h3 {
+    font-size: 1.2rem;
+  }
+
+  .calendar-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .calendar-years-container {
+    gap: var(--spacing-md);
+  }
+
+  .calendar-year-group {
+    padding: var(--spacing-sm);
+  }
+
+  .year-title {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .calendar-months {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xs);
+  }
+
+  .calendar-month {
+    min-height: 60px;
+    padding: var(--spacing-xs);
+  }
+
+  .month-name {
+    font-size: 0.85rem;
+    margin-bottom: 0;
+  }
+
+  .current-indicator {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.4rem;
+    margin-top: 0.2rem;
+  }
+
+  .month-check {
+    width: 20px;
+    height: 20px;
+    font-size: 0.8rem;
+    top: 2px;
+    right: 2px;
+  }
+
+  .selected-summary {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    align-items: flex-start;
+    padding: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+  }
+
+  .selected-summary p {
+    font-size: 0.9rem;
+  }
+
+  .btn-clear {
+    width: 100%;
+    padding: 0.6rem;
+    font-size: 0.85rem;
+  }
+}
+

@@ -1,0 +1,464 @@
+.reportes-page {
+  min-height: calc(100vh - 80px);
+  padding: var(--spacing-xl) var(--spacing-sm);
+  background: linear-gradient(135deg, var(--color-beige) 0%, var(--color-blanco) 100%);
+}
+
+.reportes-page h1 {
+  color: var(--color-verde-agua);
+  font-size: 2.5rem;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.reportes-welcome {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--color-gris-oscuro);
+  margin-bottom: var(--spacing-lg);
+}
+
+.year-selector {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  justify-content: center;
+}
+
+.year-selector label {
+  font-weight: 600;
+  color: var(--color-verde-agua);
+  font-size: 1.1rem;
+}
+
+.year-select {
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--color-gris-claro);
+  border-radius: var(--border-radius-sm);
+  font-size: 1rem;
+  background-color: var(--color-blanco);
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.year-select:focus {
+  outline: none;
+  border-color: var(--color-verde-agua);
+}
+
+.monthly-stats {
+  background-color: var(--color-blanco);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: var(--spacing-lg);
+}
+
+.highlight-current-revenue {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  background: linear-gradient(135deg, var(--color-verde-agua) 0%, var(--color-terracota) 100%);
+  color: var(--color-blanco);
+  border-radius: var(--border-radius-sm);
+}
+
+.highlight-current-revenue .stat-label {
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.highlight-current-revenue .stat-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.monthly-table-container {
+  background-color: var(--color-blanco);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow-x: auto;
+}
+
+.monthly-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.monthly-table thead {
+  background-color: var(--color-beige);
+}
+
+.monthly-table th {
+  padding: var(--spacing-md);
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-verde-agua);
+}
+
+.monthly-table td {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--color-gris-claro);
+}
+
+.monthly-table tbody tr:hover {
+  background-color: var(--color-beige);
+}
+
+.paid-people-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.person-name {
+  color: var(--color-gris-oscuro);
+  font-weight: 500;
+}
+
+.more-people {
+  color: var(--color-verde-agua);
+  font-weight: 500;
+}
+
+.btn-details {
+  background: linear-gradient(135deg, var(--color-verde-agua) 0%, var(--color-terracota) 100%);
+  color: var(--color-blanco);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.btn-details:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  padding: var(--spacing-md);
+}
+
+.modal-content {
+  background-color: var(--color-blanco);
+  border-radius: var(--border-radius);
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  border-bottom: 2px solid var(--color-beige);
+  background: linear-gradient(135deg, var(--color-verde-agua) 0%, var(--color-terracota) 100%);
+  color: var(--color-blanco);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--color-blanco);
+  font-size: 2rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.modal-close:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.modal-body {
+  padding: var(--spacing-lg);
+}
+
+.modal-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background-color: var(--color-beige);
+  border-radius: var(--border-radius-sm);
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.summary-label {
+  font-weight: 500;
+  color: var(--color-gris-oscuro);
+  font-size: 0.9rem;
+}
+
+.summary-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-verde-agua);
+}
+
+.payments-details-list h3 {
+  color: var(--color-verde-agua);
+  font-weight: 400;
+  margin-bottom: var(--spacing-md);
+}
+
+.payment-detail-item {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--color-gris-claro);
+  margin-bottom: var(--spacing-sm);
+}
+
+.payment-detail-info {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+.payment-detail-user {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.payment-detail-user strong {
+  color: var(--color-gris-oscuro);
+  font-size: 1rem;
+}
+
+.payment-detail-email {
+  color: var(--color-gris-oscuro);
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.payment-detail-amount {
+  font-weight: 600;
+  color: var(--color-verde-agua);
+  font-size: 1.1rem;
+}
+
+.payment-detail-date {
+  color: var(--color-gris-oscuro);
+  font-size: 0.9rem;
+}
+
+.payment-method {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--border-radius-sm);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.payment-method-efectivo {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.payment-method-web {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .year-selector {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .monthly-table {
+    font-size: 0.95rem;
+  }
+
+  .monthly-table th,
+  .monthly-table td {
+    padding: var(--spacing-sm);
+  }
+}
+
+/* Teléfono */
+@media (max-width: 767px) {
+  .reportes-page {
+    padding: var(--spacing-md) var(--spacing-xs);
+  }
+
+  .reportes-page h1 {
+    font-size: 1.8rem;
+  }
+
+  .reportes-welcome {
+    font-size: 1rem;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .year-selector {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    align-items: stretch;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .year-selector label {
+    font-size: 1rem;
+  }
+
+  .year-select {
+    width: 100%;
+    padding: 0.65rem;
+    font-size: 0.95rem;
+  }
+
+  .monthly-stats {
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .highlight-current-revenue {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    text-align: center;
+    padding: var(--spacing-sm);
+  }
+
+  .highlight-current-revenue .stat-label {
+    font-size: 1rem;
+  }
+
+  .highlight-current-revenue .stat-value {
+    font-size: 1.3rem;
+  }
+
+  .monthly-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .monthly-table {
+    font-size: 0.85rem;
+    min-width: 600px;
+  }
+
+  .monthly-table th,
+  .monthly-table td {
+    padding: var(--spacing-xs);
+    white-space: nowrap;
+  }
+
+  .monthly-table th {
+    font-size: 0.8rem;
+  }
+
+  .paid-people-list {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .btn-details {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .modal-overlay {
+    padding: var(--spacing-xs);
+  }
+
+  .modal-content {
+    max-height: 95vh;
+  }
+
+  .modal-header {
+    padding: var(--spacing-sm);
+  }
+
+  .modal-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .modal-close {
+    width: 35px;
+    height: 35px;
+    font-size: 1.5rem;
+  }
+
+  .modal-body {
+    padding: var(--spacing-md);
+  }
+
+  .modal-summary {
+    grid-template-columns: 1fr;
+    padding: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .summary-item {
+    gap: var(--spacing-xs);
+  }
+
+  .summary-label {
+    font-size: 0.85rem;
+  }
+
+  .summary-value {
+    font-size: 1.3rem;
+  }
+
+  .payment-detail-info {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xs);
+  }
+
+  .payment-detail-user strong {
+    font-size: 0.95rem;
+  }
+
+  .payment-detail-email {
+    font-size: 0.8rem;
+  }
+
+  .payment-detail-amount {
+    font-size: 1rem;
+  }
+
+  .payment-detail-date {
+    font-size: 0.85rem;
+  }
+}
+
