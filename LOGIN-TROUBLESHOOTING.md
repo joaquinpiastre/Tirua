@@ -246,3 +246,5 @@ Si el problema persiste:
    - Los pasos para reproducirlo
    - Si el usuario existe en la base de datos
 
+
+

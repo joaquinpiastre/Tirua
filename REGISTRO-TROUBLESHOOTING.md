@@ -217,3 +217,5 @@ npx prisma migrate reset
 
 **⚠️ ADVERTENCIA:** Esto eliminará todos los usuarios y pagos existentes.
 
+
+

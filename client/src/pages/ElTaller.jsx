@@ -5,7 +5,7 @@ const ElTaller = () => {
     <div className="el-taller">
       <section className="taller-hero">
         <h1>El Taller</h1>
-        <p className="taller-subtitle">Nuestra historia y filosofía</p>
+        <p className="taller-subtitle">Un espacio creativo para niños y escuelas</p>
       </section>
 
       <section className="taller-content">
@@ -13,27 +13,39 @@ const ElTaller = () => {
           <div className="taller-section">
             <h2>¿Qué es Tirùa?</h2>
             <p>
-              Tirùa es un taller de cerámica artesanal ubicado en San Rafael, Mendoza, Argentina. 
-              Nos dedicamos a la creación de piezas únicas, donde cada trabajo refleja la pasión 
-              y el cuidado del proceso artesanal.
+              Tirùa es un taller creativo ubicado en San Rafael, Mendoza, Argentina, 
+              especialmente diseñado para niños y escuelas. Conectamos el arte con múltiples 
+              actividades recreativas y educativas, creando un espacio donde los más pequeños 
+              pueden explorar, crear y aprender de manera divertida.
             </p>
           </div>
 
           <div className="taller-section">
             <h2>Nuestra Filosofía</h2>
             <p>
-              Creemos en el trabajo manual, en el proceso lento y cuidadoso que transforma la arcilla 
-              en arte. Cada pieza que sale de nuestro taller lleva consigo la esencia del trabajo 
-              artesanal, la dedicación y el amor por la cerámica.
+              Creemos en el aprendizaje a través de la experiencia y el juego. Cada actividad 
+              está diseñada para que los niños desarrollen su creatividad, habilidades manuales 
+              y conexión con la naturaleza, mientras se divierten y hacen nuevos amigos.
             </p>
           </div>
 
           <div className="taller-section">
-            <h2>Trabajo Manual</h2>
+            <h2>Para Escuelas</h2>
             <p>
-              En Tirùa, cada pieza es única. No utilizamos moldes en serie, sino que trabajamos 
-              cada creación de manera individual, dando forma a la arcilla con nuestras propias manos, 
-              creando piezas que cuentan historias y transmiten emociones.
+              Estamos abocados especialmente a que las escuelas lleven a sus niños al taller. 
+              Ofrecemos un espacio seguro, educativo y recreativo donde los estudiantes pueden 
+              participar en actividades variadas que complementan su formación académica con 
+              experiencias prácticas y creativas.
+            </p>
+          </div>
+
+          <div className="taller-section">
+            <h2>Nuestro Compromiso</h2>
+            <p>
+              En Tirùa, cada niño es único y valioso. Adaptamos nuestras actividades por edades 
+              para asegurar que cada experiencia sea apropiada y enriquecedora. Trabajamos con 
+              grupos reducidos (máximo 15 niños por estación) para garantizar atención personalizada 
+              y un ambiente seguro para todos.
             </p>
           </div>
         </div>
@@ -43,4 +55,6 @@ const ElTaller = () => {
 };
 
 export default ElTaller;
+
+
 

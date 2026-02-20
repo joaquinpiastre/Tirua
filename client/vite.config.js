@@ -13,5 +13,21 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    sourcemap: false,
+    minify: 'esbuild', // Usa esbuild que viene con Vite (más rápido y no requiere dependencias adicionales)
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+        },
+      },
+    },
+  },
+  base: './', // Para que funcione en cualquier servidor estático
 })
+
+
 

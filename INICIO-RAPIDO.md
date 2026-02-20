@@ -86,3 +86,5 @@ Esto iniciará:
 2. Crea un usuario administrador (ver `ADMIN-SETUP.md` si existe)
 3. Configura Mercado Pago (agrega `MERCADOPAGO_ACCESS_TOKEN` en `server/.env`)
 
+
+
