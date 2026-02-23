@@ -1,3 +1,5 @@
+import bcrypt from 'bcryptjs';
+import { validationResult } from 'express-validator';
 import prisma from '../config/database.js';
 
 export const getAllUsers = async (req, res) => {
@@ -13,7 +15,8 @@ export const getAllUsers = async (req, res) => {
         { nombre: { contains: search, mode: 'insensitive' } },
         { apellido: { contains: search, mode: 'insensitive' } },
         { email: { contains: search, mode: 'insensitive' } },
-        { dni: { contains: search, mode: 'insensitive' } }
+        { dni: { contains: search, mode: 'insensitive' } },
+        { nombreAlumno: { contains: search, mode: 'insensitive' } }
       ];
     }
 
@@ -131,6 +134,7 @@ export const getAllUsers = async (req, res) => {
         email: user.email,
         dni: user.dni,
         telefono: user.telefono,
+        nombreAlumno: user.nombreAlumno,
         createdAt: user.createdAt,
         accountStatus,
         isUpToDate,
@@ -279,6 +283,7 @@ export const getUserDetails = async (req, res) => {
         dni: user.dni,
         telefono: user.telefono,
         rol: user.rol,
+        nombreAlumno: user.nombreAlumno,
         createdAt: user.createdAt,
         updatedAt: user.updatedAt,
         accountStatus,
@@ -555,6 +560,89 @@ export const createManualPayment = async (req, res) => {
       message: 'Error al crear pago manual', 
       error: error.message 
     });
+  }
+};
+
+export const getMaestros = async (req, res) => {
+  try {
+    const maestros = await prisma.user.findMany({
+      where: { rol: 'maestro' },
+      select: {
+        id: true,
+        nombre: true,
+        apellido: true,
+        email: true,
+        dni: true,
+        telefono: true,
+        createdAt: true,
+        _count: { select: { clasesComoMaestro: true } }
+      },
+      orderBy: { createdAt: 'desc' }
+    });
+    res.json({ maestros });
+  } catch (error) {
+    console.error('Error al obtener maestros:', error);
+    res.status(500).json({ message: 'Error al obtener maestros', error: error.message });
+  }
+};
+
+export const registerMaestro = async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ message: 'Error de validación', errors: errors.array() });
+    }
+    const { nombre, apellido, email, password, dni, telefono } = req.body;
+    const normalizedEmail = (email || '').trim().toLowerCase();
+    const normalizedDni = (dni || '').trim();
+
+    const existingEmail = await prisma.user.findUnique({
+      where: { email: normalizedEmail }
+    });
+    if (existingEmail) {
+      return res.status(400).json({ message: 'El email ya está registrado' });
+    }
+    const existingDni = await prisma.user.findUnique({
+      where: { dni: normalizedDni }
+    });
+    if (existingDni) {
+      return res.status(400).json({ message: 'El DNI ya está registrado' });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const maestro = await prisma.user.create({
+      data: {
+        nombre: nombre.trim(),
+        apellido: apellido.trim(),
+        email: normalizedEmail,
+        password: hashedPassword,
+        dni: normalizedDni,
+        telefono: (telefono && telefono.trim() !== '') ? telefono.trim() : null,
+        rol: 'maestro'
+      },
+      select: {
+        id: true,
+        nombre: true,
+        apellido: true,
+        email: true,
+        dni: true,
+        telefono: true,
+        rol: true,
+        createdAt: true
+      }
+    });
+    res.status(201).json({
+      message: 'Maestro registrado correctamente. Puede iniciar sesión con su email y contraseña.',
+      maestro
+    });
+  } catch (error) {
+    console.error('Error al registrar maestro:', error);
+    if (error.code === 'P2002') {
+      const field = error.meta?.target?.[0];
+      if (field === 'email') return res.status(400).json({ message: 'El email ya está registrado' });
+      if (field === 'dni') return res.status(400).json({ message: 'El DNI ya está registrado' });
+    }
+    res.status(500).json({ message: 'Error al registrar maestro', error: error.message });
   }
 };
 

@@ -1,0 +1,234 @@
+.maestro-page {
+  min-height: calc(100vh - 80px);
+  padding: var(--spacing-xl) var(--spacing-sm);
+  background: linear-gradient(135deg, var(--color-beige) 0%, var(--color-blanco) 100%);
+}
+
+.maestro-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.maestro-page h1 {
+  color: var(--color-verde-agua);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.maestro-welcome {
+  color: var(--color-gris-oscuro);
+  margin-bottom: 1.5rem;
+}
+
+.maestro-actions {
+  margin-bottom: 1rem;
+}
+
+.maestro-new-clase-form {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.maestro-new-clase-form input {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.6rem 0.75rem;
+  border: 2px solid var(--color-gris-claro);
+  border-radius: var(--border-radius-sm);
+  font-size: 1rem;
+}
+
+.clases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.maestro-page .clase-card {
+  background: var(--color-blanco);
+  padding: 1.25rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.maestro-page .clase-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.maestro-page .clase-card h3 {
+  margin: 0 0 0.5rem;
+  color: var(--color-verde-agua);
+  font-size: 1.2rem;
+}
+
+.maestro-page .clase-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--color-gris-oscuro);
+}
+
+.clase-detail-panel {
+  margin-top: 2rem;
+  background: var(--color-blanco);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.clase-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  background: var(--color-beige);
+  border-bottom: 1px solid var(--color-gris-claro);
+}
+
+.clase-detail-header h2 {
+  margin: 0;
+  font-size: 1.35rem;
+  color: var(--color-verde-agua);
+}
+
+.btn-close {
+  padding: 0.5rem 1rem;
+  background: var(--color-gris-claro);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.btn-close:hover {
+  background: #ddd;
+}
+
+.clase-detail-section {
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--color-gris-claro);
+}
+
+.clase-detail-section:last-child {
+  border-bottom: none;
+}
+
+.clase-detail-section h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+  color: var(--color-gris-oscuro);
+}
+
+.hint {
+  font-size: 0.9rem;
+  color: var(--color-gris-oscuro);
+  margin-bottom: 0.5rem;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 320px;
+  padding: 0.6rem 0.75rem;
+  border: 2px solid var(--color-gris-claro);
+  border-radius: var(--border-radius-sm);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.socios-search-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.socios-search-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-gris-claro);
+}
+
+.btn-add {
+  padding: 0.35rem 0.75rem;
+  background: var(--color-verde-agua);
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-add:hover {
+  opacity: 0.9;
+}
+
+.maestro-page .alumnos-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.maestro-page .alumnos-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-gris-claro);
+}
+
+.btn-remove {
+  padding: 0.35rem 0.75rem;
+  background: transparent;
+  color: #c00;
+  border: 1px solid #c00;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.btn-remove:hover {
+  background: #fee;
+}
+
+.asistencia-section .asistencia-fecha {
+  margin-bottom: 0.75rem;
+}
+
+.asistencia-section .asistencia-fecha label {
+  margin-right: 0.5rem;
+}
+
+.asistencia-section input[type="date"] {
+  padding: 0.5rem;
+  border: 2px solid var(--color-gris-claro);
+  border-radius: var(--border-radius-sm);
+}
+
+.asistencia-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 1rem;
+}
+
+.asistencia-list li {
+  padding: 0.4rem 0;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.checkbox-label input {
+  width: 1.1rem;
+  height: 1.1rem;
+}

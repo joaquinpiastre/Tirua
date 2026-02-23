@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Clases.css';
 
 const Clases = () => {
@@ -167,6 +168,12 @@ const Clases = () => {
 
       <section className="clases-content">
         <div className="container">
+          <div className="clases-escuelas-banner">
+            <p>
+              <strong>¿Sos escuela o institución?</strong> Tenemos el <strong>Paseo Pedagógico</strong> con propuestas para inicial, primaria, secundaria, terciaria y más. Reservas por WhatsApp.
+            </p>
+            <Link to="/escuelas" className="clases-link-escuelas">Ver Proyecto Escuelas 2026 →</Link>
+          </div>
           <div className="clases-intro">
             <h2>Conectamos el Arte con:</h2>
             <p>

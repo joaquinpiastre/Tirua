@@ -192,7 +192,7 @@ const Admin = () => {
           <div className="admin-controls">
             <input
               type="text"
-              placeholder="Buscar por nombre, email o DNI..."
+              placeholder="Buscar por nombre, email, DNI o nombre del alumno..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="search-input"
@@ -214,7 +214,8 @@ const Admin = () => {
             <table className="users-table">
               <thead>
                 <tr>
-                  <th>Nombre</th>
+                  <th>Tutor</th>
+                  <th>Alumno</th>
                   <th>Email</th>
                   <th>DNI</th>
                   <th>Estado</th>
@@ -225,6 +226,7 @@ const Admin = () => {
                 {users.map((user) => (
                   <tr key={user.id}>
                     <td>{user.nombre} {user.apellido}</td>
+                    <td>{user.nombreAlumno || '—'}</td>
                     <td>{user.email}</td>
                     <td>{user.dni}</td>
                     <td>{getStatusBadge(user.accountStatus)}</td>
@@ -262,6 +264,7 @@ const Admin = () => {
                 </div>
                 <div className="modal-body">
                   <div className="user-info">
+                    <p><strong>Alumno:</strong> {userDetails.nombreAlumno || 'No indicado'}</p>
                     <p><strong>Email:</strong> {userDetails.email}</p>
                     <p><strong>DNI:</strong> {userDetails.dni}</p>
                     <p><strong>Teléfono:</strong> {userDetails.telefono || 'No proporcionado'}</p>

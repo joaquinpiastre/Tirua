@@ -11,17 +11,21 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(uuid())
-  nombre    String
-  apellido  String
-  email     String    @unique
-  password  String
-  dni       String    @unique
-  telefono  String?
-  rol       String    @default("socio")
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  payments  Payment[]
+  id            String    @id @default(uuid())
+  nombre        String
+  apellido      String
+  email         String    @unique
+  password      String
+  dni           String    @unique
+  telefono      String?
+  rol           String    @default("socio")
+  nombreAlumno  String?   // Nombre del niño/alumno (para socios); búsqueda por maestro y admin
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  payments      Payment[]
+  clasesComoAlumno  ClaseAlumno[]
+  asistencias   Asistencia[]
+  clasesComoMaestro Clase[]    @relation("MaestroClases")
 
   @@map("users")
 }
@@ -45,6 +49,42 @@ model Payment {
 
   @@unique([userId, mes, ano])
   @@map("payments")
+}
+
+model Clase {
+  id        String   @id @default(uuid())
+  nombre    String
+  maestroId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  maestro   User     @relation("MaestroClases", fields: [maestroId], references: [id], onDelete: Cascade)
+  alumnos   ClaseAlumno[]
+  asistencias Asistencia[]
+
+  @@map("clases")
+}
+
+model ClaseAlumno {
+  id      String   @id @default(uuid())
+  claseId String
+  userId  String   // User (socio) - se muestra nombreAlumno
+  clase   Clase    @relation(fields: [claseId], references: [id], onDelete: Cascade)
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([claseId, userId])
+  @@map("clase_alumnos")
+}
+
+model Asistencia {
+  id      String   @id @default(uuid())
+  claseId String
+  userId  String   // alumno (socio) que asistió
+  fecha   DateTime // fecha de la clase
+  clase   Clase    @relation(fields: [claseId], references: [id], onDelete: Cascade)
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([claseId, userId, fecha])
+  @@map("asistencias")
 }
 
 

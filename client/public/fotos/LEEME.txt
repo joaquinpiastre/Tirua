@@ -1,0 +1,15 @@
+Fotos para la web de Tirùa
+=========================
+
+Colocá aquí las imágenes con estos nombres para que se muestren en la página:
+
+En la página de INICIO (Home):
+- taller-1.jpg   →  Foto del espacio del taller
+- taller-2.jpg   →  Actividades con los chicos
+- taller-3.jpg   →  Niños creando / en acción
+
+En la página EL TALLER:
+- el-taller-espacio.jpg   →  Foto del espacio del taller
+- el-taller-escuelas.jpg  →  Escuelas visitando el taller
+
+Formato recomendado: JPG o PNG, proporción 4:3 o 16:10 para que se vean bien en todos los dispositivos.

@@ -11,15 +11,17 @@
 }
 
 .taller-hero h1 {
+  font-family: var(--font-titulo);
   font-size: 3.5rem;
-  font-weight: 300;
-  letter-spacing: 3px;
+  font-weight: 400;
+  letter-spacing: 1px;
   margin-bottom: var(--spacing-sm);
 }
 
 .taller-subtitle {
+  font-family: var(--font-cuerpo);
   font-size: 1.3rem;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 .taller-content {
@@ -36,17 +38,112 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
+.taller-section-title {
+  color: var(--color-verde-agua);
+  font-family: var(--font-titulo);
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: var(--spacing-md);
+}
+
 .taller-section h2 {
   color: var(--color-verde-agua);
+  font-family: var(--font-titulo);
   font-size: 2rem;
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: var(--spacing-md);
 }
 
 .taller-section p {
   font-size: 1.1rem;
-  line-height: 1.8;
+  line-height: 1.85;
   color: var(--color-gris-oscuro);
+}
+
+.taller-link-escuelas {
+  display: inline-block;
+  margin-top: var(--spacing-md);
+  color: var(--color-verde-agua);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1.05rem;
+}
+
+.taller-link-escuelas:hover {
+  text-decoration: underline;
+}
+
+/* Secciones con foto (texto + imagen) */
+.taller-section-with-photo {
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-lg);
+  align-items: center;
+}
+
+.taller-section-photo {
+  order: 2;
+}
+
+.taller-section-text {
+  order: 1;
+}
+
+.taller-photo-wrap {
+  position: relative;
+  aspect-ratio: 16/10;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  background: var(--color-gris-claro);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.taller-photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.taller-photo-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-verde-agua) 25%, var(--color-terracota) 75%);
+  color: var(--color-blanco);
+  font-family: var(--font-titulo);
+  font-size: 1.2rem;
+}
+
+.taller-photo-wrap.loaded .taller-photo-placeholder {
+  display: none;
+}
+
+/* Desktop: texto y foto en fila */
+@media (min-width: 768px) {
+  .taller-section-with-photo {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .taller-section-with-photo .taller-section-text {
+    order: 1;
+  }
+
+  .taller-section-with-photo .taller-section-photo {
+    order: 2;
+  }
+
+  /* Cuando la foto va primero en el HTML, mostramos foto izquierda y texto derecha */
+  .taller-section-with-photo:has(> .taller-section-photo:first-child) .taller-section-text {
+    order: 2;
+  }
+
+  .taller-section-with-photo:has(> .taller-section-photo:first-child) .taller-section-photo {
+    order: 1;
+  }
 }
 
 /* Tablet */
@@ -63,7 +160,8 @@
     padding: var(--spacing-md);
   }
 
-  .taller-section h2 {
+  .taller-section h2,
+  .taller-section-title {
     font-size: 1.8rem;
   }
 }

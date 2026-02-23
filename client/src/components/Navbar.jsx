@@ -23,14 +23,12 @@ const Navbar = () => {
           <li><Link to="/">INICIO</Link></li>
           <li><Link to="/el-taller">EL TALLER</Link></li>
           <li><Link to="/clases">CLASES</Link></li>
-          {isAuthenticated && user?.rol !== 'admin' && (
+          <li><Link to="/escuelas">ESCUELAS</Link></li>
+          {isAuthenticated && user?.rol === 'socio' && (
             <li><Link to="/socios">SOCIOS</Link></li>
           )}
-          {isAuthenticated && user?.rol === 'admin' && (
-            <>
-              <li><Link to="/admin">ADMIN</Link></li>
-              <li><Link to="/reportes">REPORTES</Link></li>
-            </>
+          {isAuthenticated && user?.rol === 'maestro' && (
+            <li><Link to="/maestro">MIS CLASES</Link></li>
           )}
           <li><Link to="/contacto">CONTACTO</Link></li>
           {isAuthenticated ? (

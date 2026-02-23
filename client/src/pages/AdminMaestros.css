@@ -1,0 +1,96 @@
+.admin-maestros {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.admin-maestros h1 {
+  color: var(--color-verde-agua);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.admin-maestros .admin-welcome {
+  color: var(--color-gris-oscuro);
+  margin-bottom: 1.5rem;
+}
+
+.admin-maestros-actions {
+  margin-bottom: 1.5rem;
+}
+
+.admin-maestros-form {
+  background: var(--color-blanco);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  margin-bottom: 1.5rem;
+}
+
+.admin-maestros-form .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.admin-maestros-form .form-group {
+  margin-bottom: 1rem;
+}
+
+.admin-maestros-form .form-group label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 500;
+  color: var(--color-gris-oscuro);
+}
+
+.admin-maestros-form input {
+  width: 100%;
+  padding: 0.6rem;
+  border: 2px solid var(--color-gris-claro);
+  border-radius: var(--border-radius-sm);
+}
+
+.admin-maestros-form .error-message {
+  color: #c00;
+  margin-bottom: 0.75rem;
+}
+
+.admin-maestros-form .success-message {
+  color: #28a745;
+  margin-bottom: 0.75rem;
+}
+
+.maestros-table-container {
+  overflow-x: auto;
+  background: var(--color-blanco);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.maestros-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.maestros-table th,
+.maestros-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-gris-claro);
+}
+
+.maestros-table th {
+  background: var(--color-beige);
+  color: var(--color-verde-agua);
+  font-weight: 600;
+}
+
+.maestros-table tbody tr:hover {
+  background: rgba(0,0,0,0.02);
+}
+
+@media (max-width: 600px) {
+  .admin-maestros-form .form-row {
+    grid-template-columns: 1fr;
+  }
+}

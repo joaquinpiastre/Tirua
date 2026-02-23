@@ -22,6 +22,8 @@ const Login = () => {
       if (result.success) {
         if (result.user?.rol === 'admin') {
           navigate('/admin');
+        } else if (result.user?.rol === 'maestro') {
+          navigate('/maestro');
         } else {
           navigate('/socios');
         }

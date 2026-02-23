@@ -47,5 +47,12 @@ export const requireAdmin = (req, res, next) => {
   next();
 };
 
+export const requireMaestroOrAdmin = (req, res, next) => {
+  if (req.user.rol !== 'maestro' && req.user.rol !== 'admin') {
+    return res.status(403).json({ message: 'Acceso denegado. Se requiere rol de maestro o administrador' });
+  }
+  next();
+};
+
 
 

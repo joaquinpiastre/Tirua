@@ -31,9 +31,10 @@
 }
 
 .contacto-hero h1 {
+  font-family: var(--font-titulo);
   font-size: 3rem;
-  font-weight: 300;
-  letter-spacing: 3px;
+  font-weight: 400;
+  letter-spacing: 1px;
   margin-bottom: var(--spacing-xs);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -41,7 +42,6 @@
 .contacto-subtitle {
   font-size: 1.2rem;
   opacity: 0.95;
-  font-weight: 300;
 }
 
 .contacto-content {
@@ -112,6 +112,7 @@ a.contact-card-compact {
 
 .card-content-compact h3 {
   color: var(--color-verde-agua);
+  font-family: var(--font-titulo);
   font-size: 1.1rem;
   font-weight: 500;
   margin-bottom: var(--spacing-xs);
@@ -135,6 +136,17 @@ a.contact-card-compact {
   color: var(--color-verde-agua);
 }
 
+.contact-card-note {
+  font-size: 0.85rem;
+  color: var(--color-gris-oscuro);
+  margin-top: 0.35rem;
+  margin-bottom: 0;
+}
+
+.contact-card-whatsapp:hover .card-content-compact h3 {
+  color: #25d366;
+}
+
 .map-section-compact {
   background-color: var(--color-beige);
   padding: var(--spacing-lg);
@@ -149,8 +161,9 @@ a.contact-card-compact {
 
 .map-header-compact h2 {
   color: var(--color-verde-agua);
+  font-family: var(--font-titulo);
   font-size: 1.8rem;
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: var(--spacing-xs);
   letter-spacing: 1px;
 }

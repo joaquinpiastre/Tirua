@@ -1,0 +1,129 @@
+.admin-clases {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.admin-clases h1 {
+  color: var(--color-verde-agua);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.admin-clases .admin-welcome {
+  color: var(--color-gris-oscuro);
+  margin-bottom: 1.5rem;
+}
+
+.clases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.clase-card {
+  background: var(--color-blanco);
+  padding: 1.25rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.clase-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.clase-card h3 {
+  margin: 0 0 0.5rem;
+  color: var(--color-verde-agua);
+  font-size: 1.2rem;
+}
+
+.clase-card p {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+  color: var(--color-gris-oscuro);
+}
+
+.clase-detail-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.clase-detail-modal .modal-content {
+  background: var(--color-blanco);
+  border-radius: var(--border-radius);
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.clase-detail-modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--color-gris-claro);
+}
+
+.clase-detail-modal .modal-header h2 {
+  margin: 0;
+  font-size: 1.35rem;
+  color: var(--color-verde-agua);
+}
+
+.clase-detail-modal .modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--color-gris-oscuro);
+  line-height: 1;
+}
+
+.clase-detail-modal .modal-body {
+  padding: 1.25rem;
+}
+
+.clase-detail-modal .modal-body h3 {
+  margin: 1rem 0 0.5rem;
+  font-size: 1rem;
+  color: var(--color-gris-oscuro);
+}
+
+.alumnos-list,
+.asistencia-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.alumnos-list li,
+.asistencia-list li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--color-gris-claro);
+}
+
+.email-small {
+  font-size: 0.85rem;
+  color: var(--color-gris-oscuro);
+  margin-left: 0.5rem;
+}
+
+.asistencia-controls {
+  margin: 0.5rem 0;
+}
+
+.asistencia-controls input {
+  padding: 0.5rem;
+  border: 2px solid var(--color-gris-claro);
+  border-radius: var(--border-radius-sm);
+}

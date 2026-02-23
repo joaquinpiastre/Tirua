@@ -10,7 +10,8 @@ const Register = () => {
     email: '',
     password: '',
     dni: '',
-    telefono: ''
+    telefono: '',
+    nombreAlumno: ''
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -121,6 +122,19 @@ const Register = () => {
               onChange={handleChange}
               required
               minLength={6}
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="nombreAlumno">Nombre del alumno / niño</label>
+            <input
+              type="text"
+              id="nombreAlumno"
+              name="nombreAlumno"
+              value={formData.nombreAlumno}
+              onChange={handleChange}
+              required
+              placeholder="Nombre con el que se identifica al niño en el taller"
             />
           </div>
 

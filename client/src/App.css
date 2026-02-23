@@ -18,11 +18,14 @@
   --spacing-xl: 3rem;
   --border-radius: 12px;
   --border-radius-sm: 8px;
+  /* Tipografía: taller, cálida, no corporativa */
+  --font-titulo: 'Patrick Hand', cursive;
+  --font-cuerpo: 'Nunito', sans-serif;
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
+  font-family: var(--font-cuerpo);
+  line-height: 1.65;
   color: var(--color-gris-oscuro);
   background-color: var(--color-blanco);
 }
@@ -31,6 +34,19 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* Títulos con personalidad de taller (informal) */
+.page-title,
+.hero-title,
+.section-title-taller {
+  font-family: var(--font-titulo);
+  font-weight: 400;
+}
+
+.page-subtitle,
+.hero-subtitle {
+  font-family: var(--font-cuerpo);
 }
 
 .main-content {

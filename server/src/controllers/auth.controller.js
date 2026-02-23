@@ -13,7 +13,7 @@ export const register = async (req, res) => {
       });
     }
 
-    const { nombre, apellido, email, password, dni, telefono } = req.body;
+    const { nombre, apellido, email, password, dni, telefono, nombreAlumno } = req.body;
 
     if (!process.env.JWT_SECRET) {
       console.error('JWT_SECRET no está configurado en las variables de entorno');
@@ -45,7 +45,7 @@ export const register = async (req, res) => {
     // Hash de la contraseña
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Crear usuario
+    // Crear usuario (socio) con nombre del alumno para búsqueda por maestro/admin
     const user = await prisma.user.create({
       data: {
         nombre: nombre.trim(),
@@ -54,7 +54,8 @@ export const register = async (req, res) => {
         password: hashedPassword,
         dni: normalizedDni,
         telefono: (telefono && telefono.trim() !== '') ? telefono.trim() : null,
-        rol: 'socio'
+        rol: 'socio',
+        nombreAlumno: nombreAlumno ? nombreAlumno.trim() : null
       },
       select: {
         id: true,
@@ -64,6 +65,7 @@ export const register = async (req, res) => {
         dni: true,
         telefono: true,
         rol: true,
+        nombreAlumno: true,
         createdAt: true
       }
     });
@@ -162,6 +164,7 @@ export const login = async (req, res) => {
         dni: user.dni,
         telefono: user.telefono,
         rol: user.rol,
+        nombreAlumno: user.nombreAlumno,
         createdAt: user.createdAt
       },
       token
@@ -202,6 +205,7 @@ export const getProfile = async (req, res) => {
         dni: true,
         telefono: true,
         rol: true,
+        nombreAlumno: true,
         createdAt: true
       }
     });
