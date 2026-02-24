@@ -60,6 +60,85 @@
   color: var(--color-gris-oscuro);
 }
 
+/* Tres cuadrantes en fila (columnas una al lado de la otra) */
+.taller-cuadrantes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.taller-cuadrante {
+  flex: 1 1 280px;
+  min-width: 0;
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, var(--color-beige) 0%, var(--color-blanco) 100%);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(127, 179, 168, 0.2);
+  transition: all 0.3s ease;
+}
+
+.taller-cuadrante:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border-color: rgba(127, 179, 168, 0.4);
+}
+
+.taller-cuadrante-title {
+  color: var(--color-verde-agua);
+  font-family: var(--font-titulo);
+  font-size: 1.75rem;
+  font-weight: 400;
+  margin: 0 0 var(--spacing-md);
+  letter-spacing: 0.3px;
+}
+
+.taller-cuadrante-texto {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--color-gris-oscuro);
+  margin: 0;
+}
+
+.taller-cuadrante-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.taller-cuadrante-lista li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-gris-oscuro);
+  margin-bottom: var(--spacing-sm);
+}
+
+.taller-cuadrante-lista li:last-child {
+  margin-bottom: 0;
+}
+
+.taller-check {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25em;
+  height: 1.25em;
+  background: linear-gradient(135deg, var(--color-verde-agua) 0%, var(--color-terracota) 100%);
+  color: var(--color-blanco);
+  border-radius: 50%;
+  font-size: 0.7em;
+  font-weight: bold;
+}
+
 .taller-link-escuelas {
   display: inline-block;
   margin-top: var(--spacing-md);
@@ -164,6 +243,10 @@
   .taller-section-title {
     font-size: 1.8rem;
   }
+
+  .taller-cuadrante-title {
+    font-size: 1.6rem;
+  }
 }
 
 /* Teléfono */
@@ -198,6 +281,25 @@
   .taller-section p {
     font-size: 1rem;
     line-height: 1.6;
+  }
+
+  .taller-cuadrantes {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .taller-cuadrante {
+    flex: 1 1 auto;
+    padding: var(--spacing-md);
+  }
+
+  .taller-cuadrante-title {
+    font-size: 1.45rem;
+  }
+
+  .taller-cuadrante-texto,
+  .taller-cuadrante-lista li {
+    font-size: 1rem;
   }
 }
 

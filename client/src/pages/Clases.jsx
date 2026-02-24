@@ -12,7 +12,8 @@ const Clases = () => {
           <path d="M3 12h18M12 3v18"/>
         </svg>
       ), 
-      name: 'Actividades Recreativas' 
+      name: 'Actividades Recreativas',
+      descripcion: 'El contacto permanente con la naturaleza permite que cada recreo sea la oportunidad perfecta para explorar, imaginar y crear por iniciativa propia'
     },
     { 
       icon: (
@@ -22,7 +23,8 @@ const Clases = () => {
           <path d="M12 8v4M8 8h8"/>
         </svg>
       ), 
-      name: 'Mariposario' 
+      name: 'Mariposario',
+      descripcion: 'Conocer y proteger el ciclo de la vida de una mariposa es sólo el principio  para crear conciencia sobre la importancia del respeto a la diversidad de vida que habita nuestro planeta.'
     },
     { 
       icon: (
@@ -32,7 +34,8 @@ const Clases = () => {
           <circle cx="12" cy="12" r="2"/>
         </svg>
       ), 
-      name: 'Huerta' 
+      name: 'Huerta',
+      descripcion: 'Ser testigos del proceso de crecimiento y asumir la responsabilidad de cuidado es algo que todo niño debería experimentar'
     },
     { 
       icon: (
@@ -42,7 +45,8 @@ const Clases = () => {
           <line x1="12" y1="22.08" x2="12" y2="12"/>
         </svg>
       ), 
-      name: 'Cerámica' 
+      name: 'Cerámica',
+      descripcion: 'Ser paciente y respetar los procesos, comportamientos y tiempo de cada material es necesario para comprender que en la vida sucede lo mismo.'
     },
     { 
       icon: (
@@ -50,7 +54,8 @@ const Clases = () => {
           <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
         </svg>
       ), 
-      name: 'Carpintería' 
+      name: 'Carpintería',
+      descripcion: 'Construir conociendo herramientas y sus usos. Armar, desarmar y volver a intentarlo. Adquirir estas habilidades como concepto aplicable a lo cotidiano.'
     },
     { 
       icon: (
@@ -63,7 +68,8 @@ const Clases = () => {
           <circle cx="18" cy="18" r="1"/>
         </svg>
       ), 
-      name: 'Reciclado' 
+      name: 'Reciclado',
+      descripcion: '"Resurgir de los restos" Este concepto es trasladado al juego y la creación para demostrar el "tesoro escondido" que puede renacer de lo que a veces consideramos descartado.'
     },
     { 
       icon: (
@@ -73,7 +79,8 @@ const Clases = () => {
           <path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24"/>
         </svg>
       ), 
-      name: 'Pintura y dibujo' 
+      name: 'Pintura y dibujo',
+      descripcion: 'Exploración de técnicas básicas: Colores, texturas, formas y figuras. Uso de materiales y herramientas artísticas.'
     },
     { 
       icon: (
@@ -84,7 +91,8 @@ const Clases = () => {
           <line x1="12" y1="22.08" x2="12" y2="12"/>
         </svg>
       ), 
-      name: 'Tejido' 
+      name: 'Tejido',
+      descripcion: 'Como experiencia complementaria de atención y concentración'
     },
     { 
       icon: (
@@ -95,7 +103,8 @@ const Clases = () => {
           <circle cx="12" cy="10" r="2"/>
         </svg>
       ), 
-      name: 'Tecnología' 
+      name: 'Tecnología',
+      descripcion: 'Como complemento de creaciones propias'
     },
     { 
       icon: (
@@ -105,7 +114,8 @@ const Clases = () => {
           <path d="M9 12h6"/>
         </svg>
       ), 
-      name: 'Música' 
+      name: 'Música',
+      descripcion: 'También podemos crear sonidos!'
     },
     { 
       icon: (
@@ -115,7 +125,8 @@ const Clases = () => {
           <path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6"/>
         </svg>
       ), 
-      name: 'Cocina' 
+      name: 'Cocina',
+      descripcion: 'El arte se sienta a la mesa con recetas simples pero cargadas de sabores como: instrucciones, paciencia, compañerismo orden y limpieza.'
     }
   ];
 
@@ -172,13 +183,12 @@ const Clases = () => {
             <p>
               <strong>¿Sos escuela o institución?</strong> Tenemos el <strong>Paseo Pedagógico</strong> con propuestas para inicial, primaria, secundaria, terciaria y más. Reservas por WhatsApp.
             </p>
-            <Link to="/escuelas" className="clases-link-escuelas">Ver Proyecto Escuelas 2026 →</Link>
+            <Link to="/escuelas" className="clases-link-escuelas">Ver Proyecto Escuelas 2026 → Consultá la disponibilidad en el calendario</Link>
           </div>
           <div className="clases-intro">
-            <h2>Conectamos el Arte con:</h2>
+            <h2>El arte como conexion autentica</h2>
             <p>
-              Ofrecemos una amplia variedad de actividades que combinan arte, naturaleza, 
-              tecnología y creatividad para que los niños exploren y descubran sus pasiones.
+            Autoconocimiento, Expresión e Interacción Grupal en cada clase y en cada proyecto.
             </p>
           </div>
 
@@ -189,6 +199,7 @@ const Clases = () => {
                   {actividad.icon}
                 </div>
                 <h3>{actividad.name}</h3>
+                <p className="actividad-descripcion">{actividad.descripcion || ''}</p>
               </div>
             ))}
           </div>

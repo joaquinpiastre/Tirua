@@ -1,22 +1,20 @@
-import { Link } from 'react-router-dom';
 import './ElTaller.css';
 
 const ElTaller = () => {
   return (
     <div className="el-taller">
       <section className="taller-hero">
-        <h1 className="page-title">El Taller</h1>
-        <p className="taller-subtitle">Un espacio creativo para chicos y escuelas</p>
+        <h1 className="page-title">Tirùa</h1>
+        <p className="taller-subtitle">Como espacio creativo </p>
       </section>
 
       <section className="taller-content">
         <div className="container">
           <div className="taller-section taller-section-with-photo">
             <div className="taller-section-text">
-              <h2 className="taller-section-title">¿Qué es Tirùa?</h2>
+              <h2 className="taller-section-title">Bienvenidos</h2>
               <p>
-                Este espacio nace en 2008. Es nuestro taller en San Rafael, Mendoza, donde juntamos arte, juego y aprendizaje: 
-                un lugar donde los chicos exploran, crean y se divierten con un montón de actividades.
+              Diseñamos y creamos un espacio para niños donde habita el Arte con propuestas educativas y recreativas para experimentarlo
               </p>
             </div>
             <div className="taller-section-photo">
@@ -27,44 +25,30 @@ const ElTaller = () => {
             </div>
           </div>
 
-          <div className="taller-section">
-            <h2 className="taller-section-title">Cómo lo hacemos</h2>
-            <p>
-              Creemos que se aprende haciendo y jugando. Por eso cada actividad está pensada para 
-              que desarrollen creatividad, manos a la obra y vínculo con la naturaleza, mientras 
-              se divierten y conocen a otros chicos.
-            </p>
-          </div>
-
-          <div className="taller-section taller-section-with-photo">
-            <div className="taller-section-photo">
-              <div className="taller-photo-wrap">
-                <img src="/fotos/el-taller-escuelas.jpg" alt="Escuelas en el taller" onLoad={(e) => e.target.closest('.taller-photo-wrap')?.classList.add('loaded')} onError={(e) => { e.target.style.display = 'none'; e.target.closest('.taller-photo-wrap')?.classList.remove('loaded'); }} />
-                <div className="taller-photo-placeholder"><span>Escuelas en el taller</span></div>
-              </div>
+          <div className="taller-cuadrantes">
+            <div className="taller-cuadrante">
+              <h2 className="taller-cuadrante-title">El espacio ideal</h2>
+              <ul className="taller-cuadrante-lista">
+                <li><span className="taller-check" aria-hidden="true">✓</span> Naturaleza: parque, huerta y mariposario</li>
+                <li><span className="taller-check" aria-hidden="true">✓</span> Aulas amplias, cómodas y seguras</li>
+                <li><span className="taller-check" aria-hidden="true">✓</span> Equipamiento y amoblamiento adaptados para niños</li>
+              </ul>
             </div>
-            <div className="taller-section-text">
-              <h2 className="taller-section-title">Para escuelas</h2>
-              <p>
-                Recibimos a escuelas de educación inicial, primaria, secundaria, terciaria, 
-                Centros de Educación Especial y grupos familiares o de adultos. La modalidad es 
-                <strong> Paseo Pedagógico</strong>: una jornada con dos proyectos (pintura y modelado), 
-                recreo al aire libre y actividades que articulan con el Programa Nacional. Armamos un espacio 
-                seguro con seguro y Servicio de Emergencias.
+
+            <div className="taller-cuadrante">
+              <h2 className="taller-cuadrante-title">16 años de experiencia</h2>
+              <p className="taller-cuadrante-texto">
+                Desarrollando actividades orientadas a crear un ámbito de conocimiento, aprendizaje y expresión a través del Arte.
               </p>
-              <Link to="/escuelas" className="taller-link-escuelas">
-                Ver Proyecto Escuelas 2026 y reservar →
-              </Link>
             </div>
-          </div>
 
-          <div className="taller-section">
-            <h2 className="taller-section-title">Nuestra forma de trabajar</h2>
-            <p>
-              Cada chico es distinto y lo tenemos en cuenta. Adaptamos todo por edades y trabajamos 
-              con grupos chicos (máximo 15 por estación) para poder acompañar bien a cada uno y 
-              que el ambiente sea cuidado para todos.
-            </p>
+            <div className="taller-cuadrante">
+              <h2 className="taller-cuadrante-title">Propuestas únicas</h2>
+              <ul className="taller-cuadrante-lista">
+                <li><span className="taller-check" aria-hidden="true">✓</span> Talleres permanentes: abrimos las puertas a la creatividad, expresión, confianza, autoestima e interacción grupal.</li>
+                <li><span className="taller-check" aria-hidden="true">✓</span> Visitas: es un placer recibir a grupos de educación inicial, primaria, secundaria, terciaria y Centros de Educación Especial.</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
