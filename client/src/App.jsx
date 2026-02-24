@@ -13,6 +13,7 @@ import Socios from './pages/Socios';
 import Admin from './pages/Admin';
 import AdminMaestros from './pages/AdminMaestros';
 import AdminClases from './pages/AdminClases';
+import AdminAgenda from './pages/AdminAgenda';
 import Reportes from './pages/Reportes';
 import Maestro from './pages/Maestro';
 import AdminRoute from './components/AdminRoute';
@@ -54,6 +55,7 @@ function AppContent() {
             <Route index element={<Admin />} />
             <Route path="maestros" element={<AdminMaestros />} />
             <Route path="clases" element={<AdminClases />} />
+            <Route path="agenda" element={<AdminAgenda />} />
             <Route path="reportes" element={<Reportes />} />
           </Route>
           <Route path="/reportes" element={<Navigate to="/admin/reportes" replace />} />

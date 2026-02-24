@@ -27,6 +27,9 @@ const AdminLayout = () => {
           <NavLink to="/admin/clases" className={({ isActive }) => (isActive ? 'active' : '')}>
             Clases
           </NavLink>
+          <NavLink to="/admin/agenda" className={({ isActive }) => (isActive ? 'active' : '')}>
+            Agenda escuelas
+          </NavLink>
           <NavLink to="/admin/reportes" className={({ isActive }) => (isActive ? 'active' : '')}>
             Reportes
           </NavLink>
