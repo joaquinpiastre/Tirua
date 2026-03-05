@@ -51,9 +51,10 @@ function AppContent() {
           <Route path="/register" element={<Register />} />
           <Route path="/socios" element={<Socios />} />
           <Route path="/maestro" element={<MaestroRoute><Maestro /></MaestroRoute>} />
+          <Route path="/maestro/agenda" element={<MaestroRoute><AdminAgenda /></MaestroRoute>} />
           <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
             <Route index element={<Admin />} />
-            <Route path="maestros" element={<AdminMaestros />} />
+            <Route path="profes" element={<AdminMaestros />} />
             <Route path="clases" element={<AdminClases />} />
             <Route path="agenda" element={<AdminAgenda />} />
             <Route path="reportes" element={<Reportes />} />

@@ -7,7 +7,7 @@ const Contacto = () => {
         <div className="hero-pattern-contact"></div>
         <div className="hero-content-contact">
           <h1>Contacto</h1>
-          <p className="contacto-subtitle">Estamos aquí para ayudarte</p>
+          <p className="contacto-subtitle">Estamos aqui para vos </p>
         </div>
       </section>
 

@@ -26,8 +26,21 @@ model User {
   clasesComoAlumno  ClaseAlumno[]
   asistencias   Asistencia[]
   clasesComoMaestro Clase[]    @relation("MaestroClases")
+  horasTrabajadas   ProfeHora[]
 
   @@map("users")
+}
+
+model ProfeHora {
+  id        String   @id @default(uuid())
+  userId    String   // profe (maestro)
+  tipo      String   // 'pyp' | 'docente'
+  horas     Float
+  fecha     DateTime @default(now()) // fecha a la que corresponden las horas
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("profe_horas")
 }
 
 model Payment {
@@ -85,6 +98,18 @@ model Asistencia {
 
   @@unique([claseId, userId, fecha])
   @@map("asistencias")
+}
+
+model VisitaEscuela {
+  id        String   @id @default(uuid())
+  fecha     DateTime // día de la visita
+  turno     String   // 'mañana' | 'tarde' — una escuela por turno por día
+  escuela   String
+  contacto  String?
+  createdAt DateTime @default(now())
+
+  @@unique([fecha, turno])
+  @@map("visitas_escuela")
 }
 
 

@@ -206,6 +206,120 @@
   border-top: 1px dashed var(--color-gris-claro);
 }
 
+.escuelas-disponibilidad {
+  margin-bottom: var(--spacing-xl);
+  background: var(--color-blanco);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.escuelas-disponibilidad h2 {
+  color: var(--color-verde-agua);
+  font-family: var(--font-titulo);
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin-bottom: var(--spacing-sm);
+}
+
+.escuelas-calendar-intro {
+  color: var(--color-gris-oscuro);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.escuelas-calendar-wrap {
+  max-width: 320px;
+}
+
+.escuelas-calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.escuelas-calendar-nav button {
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--color-gris-claro);
+  background: var(--color-blanco);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-size: 1.25rem;
+  color: var(--color-gris-oscuro);
+}
+
+.escuelas-calendar-nav button:hover {
+  background: var(--color-beige);
+  border-color: var(--color-verde-agua);
+  color: var(--color-verde-agua);
+}
+
+.escuelas-calendar-nav span {
+  font-weight: 600;
+  text-transform: capitalize;
+  color: var(--color-gris-oscuro);
+}
+
+.escuelas-calendar-dow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: 4px;
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-terracota);
+  text-transform: uppercase;
+}
+
+.escuelas-calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.escuelas-cal-day {
+  aspect-ratio: 1;
+  min-height: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: var(--color-beige);
+  position: relative;
+}
+
+.escuelas-cal-day.empty {
+  background: transparent;
+}
+
+.escuelas-cal-day.ocupado {
+  background: rgba(72, 160, 151, 0.2);
+  border: 1px solid var(--color-verde-agua);
+}
+
+.escuelas-cal-num {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-gris-oscuro);
+}
+
+.escuelas-cal-x {
+  font-size: 0.9rem;
+  color: var(--color-verde-agua);
+  font-weight: bold;
+  margin-top: 1px;
+}
+
+.escuelas-calendar-leyenda {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--color-gris-oscuro);
+}
+
 .escuelas-coordinacion {
   margin-bottom: var(--spacing-xl);
   background: var(--color-blanco);

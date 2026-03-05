@@ -174,30 +174,33 @@ const Clases = () => {
     <div className="clases">
       <section className="clases-hero">
         <h1>Nuestras Actividades</h1>
-        <p className="clases-subtitle">Conectamos el Arte con múltiples experiencias</p>
+        <p className="clases-subtitle">El Arte como conexión autèntica</p>
       </section>
 
       <section className="clases-content">
         <div className="container">
           <div className="clases-escuelas-banner">
             <p>
-              <strong>¿Sos escuela o institución?</strong> Tenemos el <strong>Paseo Pedagógico</strong> con propuestas para inicial, primaria, secundaria, terciaria y más. Reservas por WhatsApp.
+              <strong>¿Sos escuela o institución?</strong> Tenemos el <strong>Paseo Pedagógico</strong> con propuestas para niveles inicial, primaria, secundaria, terciaria y más. Reservas por WhatsApp.
             </p>
             <Link to="/escuelas" className="clases-link-escuelas">Ver Proyecto Escuelas 2026 → Consultá la disponibilidad en el calendario</Link>
           </div>
           <div className="clases-intro">
-            <h2>El arte como conexion autentica</h2>
-            <p>
-            Autoconocimiento, Expresión e Interacción Grupal en cada clase y en cada proyecto.
-            </p>
+            <h2>Autoconocimiento, Expresión e Interacción Grupal en cada clase y en cada proyecto.</h2>
+
           </div>
 
           <div className="actividades-grid">
             {actividades.map((actividad, index) => (
-              <div key={index} className="actividad-card">
-                <div className="actividad-icon-wrapper">
-                  {actividad.icon}
-                </div>
+              <div
+                key={index}
+                className={`actividad-card ${index === 0 ? 'actividad-card-recreativas' : ''} ${index === 1 ? 'actividad-card-mariposario' : ''} ${index === 2 ? 'actividad-card-huerta' : ''} ${index === 3 ? 'actividad-card-ceramica' : ''} ${index === 4 ? 'actividad-card-carpinteria' : ''} ${index === 5 ? 'actividad-card-reciclado' : ''} ${index === 6 ? 'actividad-card-pintura' : ''} ${index === 7 ? 'actividad-card-tejido' : ''} ${index === 8 ? 'actividad-card-tecnologia' : ''} ${index === 9 ? 'actividad-card-musica' : ''} ${index === 10 ? 'actividad-card-cocina' : ''}`}
+              >
+                {index !== 0 && index !== 1 && index !== 2 && index !== 3 && index !== 4 && index !== 5 && index !== 6 && index !== 7 && index !== 8 && index !== 9 && index !== 10 && (
+                  <div className="actividad-icon-wrapper">
+                    {actividad.icon}
+                  </div>
+                )}
                 <h3>{actividad.name}</h3>
                 <p className="actividad-descripcion">{actividad.descripcion || ''}</p>
               </div>

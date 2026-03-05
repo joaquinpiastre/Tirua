@@ -1,6 +1,42 @@
+import { useState, useEffect } from 'react';
+import api from '../services/api';
 import './Escuelas.css';
 
+const getDaysInMonth = (year, month) => {
+  const first = new Date(year, month, 1);
+  const last = new Date(year, month + 1, 0);
+  const startPad = first.getDay();
+  const days = [];
+  for (let i = 0; i < startPad; i++) days.push(null);
+  for (let d = 1; d <= last.getDate(); d++) days.push(d);
+  return days;
+};
+
+const formatDateKey = (y, m, d) => {
+  const mm = String(m + 1).padStart(2, '0');
+  const dd = String(d).padStart(2, '0');
+  return `${y}-${mm}-${dd}`;
+};
+
 const Escuelas = () => {
+  const [reservas, setReservas] = useState([]);
+  const [calYear, setCalYear] = useState(new Date().getFullYear());
+  const [calMonth, setCalMonth] = useState(new Date().getMonth());
+  const today = new Date();
+
+  useEffect(() => {
+    const fetchReservas = async () => {
+      try {
+        const res = await api.get('/agenda-escuelas');
+        const list = res.data.reservas || (res.data.visitas || []).map((v) => ({ fecha: v.fecha, turno: v.turno }));
+        setReservas(list);
+      } catch {
+        setReservas([]);
+      }
+    };
+    fetchReservas();
+  }, []);
+
   const objetivos = [
     'Estimular los sentidos, la imaginación y la creatividad.',
     'Promover la autoexpresión.',
@@ -147,12 +183,50 @@ const Escuelas = () => {
             ))}
           </div>
 
+          <div className="escuelas-disponibilidad">
+            <h2>Disponibilidad para visitas</h2>
+            <p className="escuelas-calendar-intro">
+              En el calendario se marcan con una cruz los días que ya tienen visita programada (mañana y/o tarde). Podemos recibir hasta 2 escuelas por día.
+            </p>
+            <div className="escuelas-calendar-wrap">
+              <div className="escuelas-calendar-nav">
+                <button type="button" onClick={() => { if (calMonth === 0) { setCalYear(calYear - 1); setCalMonth(11); } else setCalMonth(calMonth - 1); }}>‹</button>
+                <span>{new Date(calYear, calMonth).toLocaleDateString('es-AR', { month: 'long', year: 'numeric' })}</span>
+                <button type="button" onClick={() => { if (calMonth === 11) { setCalYear(calYear + 1); setCalMonth(0); } else setCalMonth(calMonth + 1); }}>›</button>
+              </div>
+              <div className="escuelas-calendar-dow">
+                {['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'].map((d) => <span key={d}>{d}</span>)}
+              </div>
+              <div className="escuelas-calendar-days">
+                {getDaysInMonth(calYear, calMonth).map((day, i) => {
+                  if (day === null) return <div key={`e-${i}`} className="escuelas-cal-day empty" />;
+                  const key = formatDateKey(calYear, calMonth + 1, day);
+                  const delDia = reservas.filter((r) => r.fecha === key);
+                  const manana = delDia.some((r) => r.turno === 'mañana');
+                  const tarde = delDia.some((r) => r.turno === 'tarde');
+                  const ocupado = manana || tarde;
+                  return (
+                    <div key={key} className={`escuelas-cal-day ${ocupado ? 'ocupado' : ''}`}>
+                      <span className="escuelas-cal-num">{day}</span>
+                      {ocupado && (
+                        <span className="escuelas-cal-x" title={manana && tarde ? 'Mañana y tarde ocupados' : manana ? 'Mañana ocupado' : 'Tarde ocupado'}>
+                          ✕
+                        </span>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+              <p className="escuelas-calendar-leyenda">✕ = día con al menos un turno reservado</p>
+            </div>
+          </div>
+
           <div className="escuelas-coordinacion">
             <h2>Coordinación previa</h2>
             <ul className="coordinacion-lista">
               <li>Acompañantes no pagan, excepto en la propuesta familiar.</li>
               <li>Contamos con habilitación, seguro y Servicio de Emergencias.</li>
-              <li>De acuerdo a la propuesta resulta el valor de acceso; las opciones son claras y definidas (no se superponen contenidos).</li>
+              <li>De acuerdo a la propuesta resulta el valor de acceso.</li>
               <li>Consultar el precio actualizado antes de reservar.</li>
               <li><strong>Reservas únicamente por WhatsApp:</strong></li>
             </ul>

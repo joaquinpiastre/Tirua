@@ -48,10 +48,30 @@ export const requireAdmin = (req, res, next) => {
 };
 
 export const requireMaestroOrAdmin = (req, res, next) => {
-  if (req.user.rol !== 'maestro' && req.user.rol !== 'admin') {
+  if (!req.user || (req.user.rol !== 'maestro' && req.user.rol !== 'admin')) {
     return res.status(403).json({ message: 'Acceso denegado. Se requiere rol de maestro o administrador' });
   }
   next();
+};
+
+/** Opcional: adjunta req.user si hay token; no devuelve 401 si no hay token */
+export const optionalAuth = async (req, res, next) => {
+  try {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+    if (!token) {
+      return next();
+    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await prisma.user.findUnique({
+      where: { id: decoded.id },
+      select: { id: true, nombre: true, apellido: true, email: true, rol: true }
+    });
+    if (user) req.user = user;
+    next();
+  } catch {
+    next();
+  }
 };
 
 

@@ -66,7 +66,7 @@ const AdminClases = () => {
   return (
     <div className="admin-clases">
       <h1>Clases (vista administrador)</h1>
-      <p className="admin-welcome">Todas las clases y asistencias. Los maestros gestionan sus propias clases en "Mis Clases".</p>
+      <p className="admin-welcome">Todas las clases y asistencias. Los profes gestionan sus propias clases en "Mis Clases".</p>
 
       <div className="clases-list">
         {clases.length === 0 ? (
@@ -76,7 +76,7 @@ const AdminClases = () => {
             {clases.map((c) => (
               <div key={c.id} className="clase-card" onClick={() => openClase(c)}>
                 <h3>{c.nombre}</h3>
-                <p>Maestro: {c.maestro?.nombre} {c.maestro?.apellido}</p>
+                <p>Profe: {c.maestro?.nombre} {c.maestro?.apellido}</p>
                 <p>{c._count?.alumnos ?? 0} alumnos</p>
               </div>
             ))}
@@ -92,7 +92,7 @@ const AdminClases = () => {
               <button type="button" className="modal-close" onClick={() => setSelectedClase(null)}>×</button>
             </div>
             <div className="modal-body">
-              <p><strong>Maestro:</strong> {claseDetail.maestro?.nombre} {claseDetail.maestro?.apellido}</p>
+              <p><strong>Profe:</strong> {claseDetail.maestro?.nombre} {claseDetail.maestro?.apellido}</p>
               <h3>Alumnos de la clase</h3>
               <ul className="alumnos-list">
                 {(claseDetail.alumnos || []).map((a) => (

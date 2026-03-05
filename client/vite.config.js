@@ -26,7 +26,8 @@ export default defineConfig({
       },
     },
   },
-  base: './', // Para que funcione en cualquier servidor estático
+  // En producción (tallertirua.com en la raíz) usar base: '/'
+  base: process.env.NODE_ENV === 'production' ? '/' : './',
 })
 
 

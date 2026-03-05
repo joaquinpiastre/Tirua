@@ -4,7 +4,9 @@
 }
 
 .clases-hero {
-  background: linear-gradient(135deg, var(--color-verde-agua) 0%, var(--color-terracota) 100%);
+  position: relative;
+  background: linear-gradient(135deg, rgba(127, 179, 168, 0.78) 0%, rgba(201, 125, 96, 0.78) 100%),
+    url("/png%20(6).png") center center / cover no-repeat;
   padding: var(--spacing-xl) var(--spacing-sm);
   text-align: center;
   color: var(--color-blanco);
@@ -192,6 +194,135 @@
 
 .actividad-card .actividad-descripcion:empty {
   display: none;
+}
+
+.actividad-card-recreativas {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.62) 0%, rgba(245, 241, 232, 0.68) 100%),
+    url("/png%20(11).png") center center / cover no-repeat;
+}
+
+.actividad-card-recreativas h3,
+.actividad-card-recreativas .actividad-descripcion,
+.actividad-card-mariposario h3,
+.actividad-card-mariposario .actividad-descripcion,
+.actividad-card-huerta h3,
+.actividad-card-huerta .actividad-descripcion,
+.actividad-card-ceramica h3,
+.actividad-card-ceramica .actividad-descripcion,
+.actividad-card-carpinteria h3,
+.actividad-card-carpinteria .actividad-descripcion,
+.actividad-card-reciclado h3,
+.actividad-card-reciclado .actividad-descripcion,
+.actividad-card-pintura h3,
+.actividad-card-pintura .actividad-descripcion,
+.actividad-card-tejido h3,
+.actividad-card-tejido .actividad-descripcion,
+.actividad-card-tecnologia h3,
+.actividad-card-tecnologia .actividad-descripcion,
+.actividad-card-musica h3,
+.actividad-card-musica .actividad-descripcion,
+.actividad-card-cocina h3,
+.actividad-card-cocina .actividad-descripcion {
+  position: relative;
+  z-index: 1;
+}
+
+/* Títulos y texto legibles sobre las imágenes de fondo */
+.actividad-card-recreativas h3,
+.actividad-card-mariposario h3,
+.actividad-card-huerta h3,
+.actividad-card-ceramica h3,
+.actividad-card-carpinteria h3,
+.actividad-card-reciclado h3,
+.actividad-card-pintura h3,
+.actividad-card-tejido h3,
+.actividad-card-tecnologia h3,
+.actividad-card-musica h3,
+.actividad-card-cocina h3 {
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-verde-agua);
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--border-radius-sm);
+  text-shadow: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.actividad-card-recreativas .actividad-descripcion,
+.actividad-card-mariposario .actividad-descripcion,
+.actividad-card-huerta .actividad-descripcion,
+.actividad-card-ceramica .actividad-descripcion,
+.actividad-card-carpinteria .actividad-descripcion,
+.actividad-card-reciclado .actividad-descripcion,
+.actividad-card-pintura .actividad-descripcion,
+.actividad-card-tejido .actividad-descripcion,
+.actividad-card-tecnologia .actividad-descripcion,
+.actividad-card-musica .actividad-descripcion,
+.actividad-card-cocina .actividad-descripcion {
+  background: rgba(255, 255, 255, 0.88);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--border-radius-sm);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.actividad-card-mariposario {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.62) 0%, rgba(245, 241, 232, 0.68) 100%),
+    url("/123456.jpeg") center center / cover no-repeat;
+}
+
+.actividad-card-huerta {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.62) 0%, rgba(245, 241, 232, 0.68) 100%),
+    url("/HUERTA.jpeg") center center / cover no-repeat;
+}
+
+.actividad-card-ceramica {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.62) 0%, rgba(245, 241, 232, 0.68) 100%),
+    url("/CERAMICA.png") center center / cover no-repeat;
+}
+
+.actividad-card-carpinteria {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.62) 0%, rgba(245, 241, 232, 0.68) 100%),
+    url("/CARPINTERIA.jpeg") center center / cover no-repeat;
+}
+
+.actividad-card-reciclado {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.62) 0%, rgba(245, 241, 232, 0.68) 100%),
+    url("/RECICLADO.png") center center / cover no-repeat;
+}
+
+.actividad-card-pintura {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.62) 0%, rgba(245, 241, 232, 0.68) 100%),
+    url("/PINTURA%20Y%20DIBUJO.jpeg") center center / cover no-repeat;
+}
+
+.actividad-card-tejido {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.62) 0%, rgba(245, 241, 232, 0.68) 100%),
+    url("/TEJIDO.jpeg") center center / cover no-repeat;
+}
+
+.actividad-card-tecnologia {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.62) 0%, rgba(245, 241, 232, 0.68) 100%),
+    url("/TECNOLOGIA.jpeg") center center / cover no-repeat;
+}
+
+.actividad-card-musica {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.62) 0%, rgba(245, 241, 232, 0.68) 100%),
+    url("/MUSICA.jpeg") center center / cover no-repeat;
+}
+
+.actividad-card-cocina {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.62) 0%, rgba(245, 241, 232, 0.68) 100%),
+    url("/COCINA.jpeg") center center / cover no-repeat;
 }
 
 .section-title {

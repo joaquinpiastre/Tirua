@@ -575,11 +575,18 @@ export const getMaestros = async (req, res) => {
         dni: true,
         telefono: true,
         createdAt: true,
-        _count: { select: { clasesComoMaestro: true } }
+        _count: { select: { clasesComoMaestro: true } },
+        horasTrabajadas: true
       },
       orderBy: { createdAt: 'desc' }
     });
-    res.json({ maestros });
+    const maestrosConHoras = maestros.map((m) => {
+      const horasPyp = (m.horasTrabajadas || []).filter((h) => h.tipo === 'pyp').reduce((s, h) => s + h.horas, 0);
+      const horasDocente = (m.horasTrabajadas || []).filter((h) => h.tipo === 'docente').reduce((s, h) => s + h.horas, 0);
+      const { horasTrabajadas, ...rest } = m;
+      return { ...rest, horasPyp, horasDocente, registrosHoras: horasTrabajadas };
+    });
+    res.json({ maestros: maestrosConHoras });
   } catch (error) {
     console.error('Error al obtener maestros:', error);
     res.status(500).json({ message: 'Error al obtener maestros', error: error.message });

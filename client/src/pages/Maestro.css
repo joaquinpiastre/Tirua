@@ -22,6 +22,35 @@
 
 .maestro-actions {
   margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.maestro-actions .btn-secondary {
+  background: var(--color-gris-oscuro);
+  color: var(--color-blanco);
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-size: 1rem;
+}
+.maestro-actions .btn-secondary:hover {
+  opacity: 0.9;
+}
+.maestro-actions .btn-agenda-escuelas {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6rem 1rem;
+  background: var(--color-verde-agua);
+  color: var(--color-blanco);
+  border-radius: var(--border-radius-sm);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.maestro-actions .btn-agenda-escuelas:hover {
+  opacity: 0.9;
 }
 
 .maestro-new-clase-form {
@@ -29,6 +58,139 @@
   gap: 0.75rem;
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
+}
+
+.maestro-horas-form {
+  margin-bottom: 0.75rem;
+}
+.maestro-horas-form select {
+  padding: 0.6rem 0.75rem;
+  border: 2px solid var(--color-gris-claro);
+  border-radius: var(--border-radius-sm);
+  font-size: 1rem;
+}
+.maestro-horas-resumen {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--color-blanco);
+  border-radius: var(--border-radius);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  color: var(--color-gris-oscuro);
+  font-size: 0.95rem;
+}
+
+.horas-calendar-section {
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+  background: var(--color-blanco);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.horas-calendar-section h3,
+.horas-por-mes-section h3 {
+  margin: 0 0 1rem;
+  font-size: 1.15rem;
+  color: var(--color-verde-agua);
+}
+.horas-calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.horas-calendar-nav button {
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--color-gris-claro);
+  background: var(--color-blanco);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--color-gris-oscuro);
+}
+.horas-calendar-nav button:hover {
+  background: var(--color-beige);
+  border-color: var(--color-verde-agua);
+}
+.horas-calendar-nav span {
+  font-weight: 600;
+  min-width: 160px;
+  text-align: center;
+  color: var(--color-gris-oscuro);
+}
+.horas-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.horas-calendar-dow {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-gris-oscuro);
+  padding: 0.35rem 0;
+}
+.horas-calendar-cell {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: var(--color-beige);
+  min-height: 44px;
+}
+.horas-calendar-cell.empty {
+  background: transparent;
+}
+.horas-calendar-cell.has-hours {
+  background: rgba(72, 160, 151, 0.15);
+  border: 1px solid var(--color-verde-agua);
+}
+.horas-cell-day {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-gris-oscuro);
+}
+.horas-cell-value {
+  font-size: 0.7rem;
+  color: var(--color-verde-agua);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.horas-por-mes-section {
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+  background: var(--color-blanco);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.horas-por-mes-empty {
+  margin: 0;
+  color: var(--color-gris-oscuro);
+  font-size: 0.95rem;
+}
+.horas-por-mes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.horas-por-mes-list li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--color-gris-claro);
+  font-size: 0.95rem;
+  color: var(--color-gris-oscuro);
+}
+.horas-por-mes-list li:last-child {
+  border-bottom: none;
+}
+.horas-mes-detalle {
+  font-size: 0.9rem;
+  color: var(--color-gris-oscuro);
+  opacity: 0.9;
 }
 
 .maestro-new-clase-form input {

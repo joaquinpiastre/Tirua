@@ -21,8 +21,8 @@ const AdminLayout = () => {
           <NavLink to="/admin" end className={({ isActive }) => (isActive ? 'active' : '')}>
             Usuarios / Socios
           </NavLink>
-          <NavLink to="/admin/maestros" className={({ isActive }) => (isActive ? 'active' : '')}>
-            Maestros
+          <NavLink to="/admin/profes" className={({ isActive }) => (isActive ? 'active' : '')}>
+            Profes
           </NavLink>
           <NavLink to="/admin/clases" className={({ isActive }) => (isActive ? 'active' : '')}>
             Clases

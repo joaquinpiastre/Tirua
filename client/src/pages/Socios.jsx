@@ -17,7 +17,8 @@ const Socios = () => {
     nombre: user?.nombre || '',
     apellido: user?.apellido || '',
     email: user?.email || '',
-    telefono: user?.telefono || ''
+    telefono: user?.telefono || '',
+    nombreAlumno: user?.nombreAlumno || ''
   });
   const [savingProfile, setSavingProfile] = useState(false);
 
@@ -36,7 +37,8 @@ const Socios = () => {
         nombre: user.nombre || '',
         apellido: user.apellido || '',
         email: user.email || '',
-        telefono: user.telefono || ''
+        telefono: user.telefono || '',
+        nombreAlumno: user.nombreAlumno || ''
       });
     }
   }, [user]);
@@ -300,6 +302,12 @@ const Socios = () => {
                       <span className="info-label">Teléfono:</span>
                       <span className="info-value">{user?.telefono || 'No proporcionado'}</span>
                     </div>
+                    {user?.rol === 'socio' && (
+                      <div className="info-row">
+                        <span className="info-label">Nombre del alumno:</span>
+                        <span className="info-value">{user?.nombreAlumno || 'No indicado'}</span>
+                      </div>
+                    )}
                   </div>
                 ) : (
                   <form onSubmit={handleEditProfile} className="profile-edit-form">
@@ -346,6 +354,19 @@ const Socios = () => {
                         onChange={handleEditFormChange}
                       />
                     </div>
+                    {user?.rol === 'socio' && (
+                      <div className="form-group">
+                        <label htmlFor="edit-nombreAlumno">Nombre del alumno / niño</label>
+                        <input
+                          type="text"
+                          id="edit-nombreAlumno"
+                          name="nombreAlumno"
+                          value={editFormData.nombreAlumno}
+                          onChange={handleEditFormChange}
+                          placeholder="Nombre del niño que asiste al taller"
+                        />
+                      </div>
+                    )}
                     <div className="form-group">
                       <label>DNI</label>
                       <input

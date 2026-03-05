@@ -3,7 +3,7 @@ import prisma from '../config/database.js';
 
 export const updateProfile = async (req, res) => {
   try {
-    const { nombre, apellido, email, telefono } = req.body;
+    const { nombre, apellido, email, telefono, nombreAlumno } = req.body;
     const userId = req.user.id;
 
     // Verificar si el email ya está en uso por otro usuario
@@ -17,7 +17,7 @@ export const updateProfile = async (req, res) => {
       }
     }
 
-    // Actualizar perfil
+    // Actualizar perfil (incluye nombre del alumno para socios)
     const updatedUser = await prisma.user.update({
       where: { id: userId },
       data: {
@@ -26,6 +26,9 @@ export const updateProfile = async (req, res) => {
         ...(email && { email: email.trim().toLowerCase() }),
         ...(telefono !== undefined && { 
           telefono: (telefono && telefono.trim() !== '') ? telefono.trim() : null 
+        }),
+        ...(nombreAlumno !== undefined && { 
+          nombreAlumno: (nombreAlumno && nombreAlumno.trim() !== '') ? nombreAlumno.trim() : null 
         })
       },
       select: {
@@ -35,6 +38,7 @@ export const updateProfile = async (req, res) => {
         email: true,
         dni: true,
         telefono: true,
+        nombreAlumno: true,
         rol: true,
         createdAt: true
       }

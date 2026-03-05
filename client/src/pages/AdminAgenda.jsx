@@ -1,25 +1,11 @@
 import { useState, useEffect } from 'react';
+import api from '../services/api';
 import './AdminAgenda.css';
 
-const STORAGE_KEY = 'tirua_agenda_escuelas';
-
-const HORARIOS = [
-  '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
-  '12:00', '12:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00'
+const TURNOS = [
+  { value: 'mañana', label: 'Mañana' },
+  { value: 'tarde', label: 'Tarde' }
 ];
-
-const getVisitasFromStorage = () => {
-  try {
-    const data = localStorage.getItem(STORAGE_KEY);
-    return data ? JSON.parse(data) : [];
-  } catch {
-    return [];
-  }
-};
-
-const saveVisitasToStorage = (visitas) => {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(visitas));
-};
 
 const getDaysInMonth = (year, month) => {
   const first = new Date(year, month, 1);
@@ -31,19 +17,40 @@ const getDaysInMonth = (year, month) => {
   return days;
 };
 
+const formatDateKey = (y, m, d) => {
+  const mm = String(m + 1).padStart(2, '0');
+  const dd = String(d).padStart(2, '0');
+  return `${y}-${mm}-${dd}`;
+};
+
 const AdminAgenda = () => {
   const today = new Date();
   const [year, setYear] = useState(today.getFullYear());
   const [month, setMonth] = useState(today.getMonth());
   const [selectedDate, setSelectedDate] = useState(null);
-  const [selectedTime, setSelectedTime] = useState('');
+  const [selectedTurno, setSelectedTurno] = useState('');
   const [nombreEscuela, setNombreEscuela] = useState('');
   const [contacto, setContacto] = useState('');
-  const [visitas, setVisitas] = useState(getVisitasFromStorage);
+  const [visitas, setVisitas] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+
+  const fetchVisitas = async () => {
+    try {
+      setLoading(true);
+      const res = await api.get('/agenda-escuelas');
+      setVisitas(res.data.visitas || []);
+    } catch (err) {
+      console.error(err);
+      setVisitas([]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    saveVisitasToStorage(visitas);
-  }, [visitas]);
+    fetchVisitas();
+  }, []);
 
   const days = getDaysInMonth(year, month);
   const monthName = new Date(year, month).toLocaleDateString('es-AR', { month: 'long', year: 'numeric' });
@@ -62,49 +69,53 @@ const AdminAgenda = () => {
     } else setMonth((m) => m + 1);
   };
 
-  const formatDateKey = (y, m, d) => {
-    const mm = String(m + 1).padStart(2, '0');
-    const dd = String(d).padStart(2, '0');
-    return `${y}-${mm}-${dd}`;
-  };
-
   const handleSelectDay = (day) => {
     if (!day) return;
     setSelectedDate({ year, month, day });
-    setSelectedTime('');
+    setSelectedTurno('');
     setNombreEscuela('');
     setContacto('');
   };
 
   const visitasDelDia = selectedDate
-    ? visitas.filter(
-        (v) =>
-          v.fecha === formatDateKey(selectedDate.year, selectedDate.month, selectedDate.day)
-      )
+    ? visitas.filter((v) => v.fecha === formatDateKey(selectedDate.year, selectedDate.month, selectedDate.day))
     : [];
 
-  const handleAgregar = () => {
-    if (!selectedDate || !selectedTime.trim() || !nombreEscuela.trim()) {
-      alert('Seleccioná día, hora y nombre de la escuela.');
+  const turnosOcupadosDelDia = visitasDelDia.map((v) => v.turno);
+  const turnosDisponibles = TURNOS.filter((t) => !turnosOcupadosDelDia.includes(t.value));
+
+  const handleAgregar = async () => {
+    if (!selectedDate || !selectedTurno || !nombreEscuela.trim()) {
+      alert('Seleccioná día, turno (mañana o tarde) y nombre de la escuela.');
       return;
     }
     const fecha = formatDateKey(selectedDate.year, selectedDate.month, selectedDate.day);
-    const nueva = {
-      id: Date.now(),
-      fecha,
-      hora: selectedTime.trim(),
-      escuela: nombreEscuela.trim(),
-      contacto: contacto.trim() || null
-    };
-    setVisitas((prev) => [...prev, nueva].sort((a, b) => a.fecha.localeCompare(b.fecha) || a.hora.localeCompare(b.hora)));
-    setNombreEscuela('');
-    setContacto('');
-    setSelectedTime('');
+    setSaving(true);
+    try {
+      await api.post('/agenda-escuelas', {
+        fecha,
+        turno: selectedTurno,
+        escuela: nombreEscuela.trim(),
+        contacto: contacto.trim() || undefined
+      });
+      await fetchVisitas();
+      setNombreEscuela('');
+      setContacto('');
+      setSelectedTurno('');
+    } catch (err) {
+      alert(err.response?.data?.message || 'Error al programar la visita');
+    } finally {
+      setSaving(false);
+    }
   };
 
-  const handleEliminar = (id) => {
-    if (window.confirm('¿Eliminar esta visita programada?')) {
-      setVisitas((prev) => prev.filter((v) => v.id !== id));
+  const handleEliminar = async (id) => {
+    if (!window.confirm('¿Eliminar esta visita programada?')) return;
+    try {
+      await api.delete(`/agenda-escuelas/${id}`);
+      await fetchVisitas();
+    } catch (err) {
+      alert(err.response?.data?.message || 'Error al eliminar');
     }
   };
 
@@ -120,13 +131,25 @@ const AdminAgenda = () => {
     return visitas.some((v) => v.fecha === key);
   };
 
+  const proximasVisitas = visitas.filter(
+    (v) => v.fecha >= formatDateKey(today.getFullYear(), today.getMonth(), today.getDate())
+  );
+
+  if (loading) {
+    return (
+      <div className="admin-agenda">
+        <div className="agenda-container"><div className="loading-spinner" /></div>
+      </div>
+    );
+  }
+
   return (
     <div className="admin-agenda">
       <div className="agenda-container">
         <header className="agenda-header">
           <h1 className="agenda-title">Agenda de visitas al taller</h1>
           <p className="agenda-subtitle">
-            Seleccioná el día y la hora para programar la visita de una escuela al taller.
+            Podés recibir hasta 2 escuelas por día: una por la mañana y otra por la tarde. Seleccioná el día y el turno para programar la visita.
           </p>
         </header>
 
@@ -134,13 +157,9 @@ const AdminAgenda = () => {
           <section className="agenda-calendar-card">
             <h2 className="agenda-card-title">Calendario</h2>
             <div className="calendar-nav">
-              <button type="button" onClick={prevMonth} className="agenda-btn-nav" aria-label="Mes anterior">
-                ‹
-              </button>
+              <button type="button" onClick={prevMonth} className="agenda-btn-nav" aria-label="Mes anterior">‹</button>
               <span className="calendar-month-name">{monthName}</span>
-              <button type="button" onClick={nextMonth} className="agenda-btn-nav" aria-label="Mes siguiente">
-                ›
-              </button>
+              <button type="button" onClick={nextMonth} className="agenda-btn-nav" aria-label="Mes siguiente">›</button>
             </div>
             <div className="calendar-weekdays">
               {['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'].map((d) => (
@@ -175,15 +194,21 @@ const AdminAgenda = () => {
                   })}
                 </p>
                 <div className="agenda-form">
-                  <label className="agenda-label">Hora</label>
+                  <label className="agenda-label">Turno</label>
                   <select
-                    value={selectedTime}
-                    onChange={(e) => setSelectedTime(e.target.value)}
+                    value={selectedTurno}
+                    onChange={(e) => setSelectedTurno(e.target.value)}
                     className="agenda-select"
                   >
-                    <option value="">Elegí la hora</option>
-                    {HORARIOS.map((h) => (
-                      <option key={h} value={h}>{h}</option>
+                    <option value="">Elegí mañana o tarde</option>
+                    {TURNOS.map((t) => (
+                      <option
+                        key={t.value}
+                        value={t.value}
+                        disabled={turnosOcupadosDelDia.includes(t.value)}
+                      >
+                        {t.label}{turnosOcupadosDelDia.includes(t.value) ? ' (ocupado)' : ''}
+                      </option>
                     ))}
                   </select>
                   <label className="agenda-label">Nombre de la escuela o institución</label>
@@ -202,8 +227,8 @@ const AdminAgenda = () => {
                     placeholder="Nombre o teléfono de contacto"
                     className="agenda-input"
                   />
-                  <button type="button" onClick={handleAgregar} className="agenda-btn-add">
-                    Agregar visita
+                  <button type="button" onClick={handleAgregar} className="agenda-btn-add" disabled={saving}>
+                    {saving ? 'Guardando...' : 'Agregar visita'}
                   </button>
                 </div>
               </>
@@ -220,15 +245,15 @@ const AdminAgenda = () => {
           {selectedDate && visitasDelDia.length === 0 && (
             <p className="agenda-empty">No hay visitas programadas para este día.</p>
           )}
-          {!selectedDate && visitas.filter((v) => v.fecha >= formatDateKey(today.getFullYear(), today.getMonth(), today.getDate())).length === 0 && (
+          {!selectedDate && proximasVisitas.length === 0 && (
             <p className="agenda-empty">No hay visitas programadas.</p>
           )}
           <ul className="agenda-list">
-            {(selectedDate ? visitasDelDia : visitas.filter((v) => v.fecha >= formatDateKey(today.getFullYear(), today.getMonth(), today.getDate())).slice(0, 20)).map((v) => (
+            {(selectedDate ? visitasDelDia : proximasVisitas.slice(0, 30)).map((v) => (
               <li key={v.id} className="agenda-list-item">
                 <div className="agenda-list-info">
                   <span className="agenda-list-fecha">
-                    {new Date(v.fecha + 'T12:00:00').toLocaleDateString('es-AR', { weekday: 'short', day: 'numeric', month: 'short' })} · {v.hora}
+                    {new Date(v.fecha + 'T12:00:00').toLocaleDateString('es-AR', { weekday: 'short', day: 'numeric', month: 'short' })} · {v.turno === 'mañana' ? 'Mañana' : 'Tarde'}
                   </span>
                   <strong className="agenda-list-escuela">{v.escuela}</strong>
                   {v.contacto && <span className="agenda-list-contacto">{v.contacto}</span>}

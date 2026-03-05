@@ -15,12 +15,12 @@ const Home = () => {
         <div className="hero-content-wrapper">
           <div className="hero-content">
             <div className="hero-text">
-              <h1 className="hero-title">Tirùa</h1>
-              <p className="hero-subtitle">Taller creativo para niñas, niños y escuelas</p>
+              <h1 className="hero-title">Tirúa</h1>
+              <p className="hero-subtitle">Taller creativo para niños.
+                Proyectos educativos para escuelas y grupos.
+              </p>
               <p className="hero-description">
-                Acá conectamos el arte con la naturaleza, la tecnología y la creatividad. 
-                Actividades para jugar, crear y aprender, adaptadas por edad para que cada 
-                uno explore a su manera.
+                Niños, Arte y Naturaleza en un espacio exclusivo y proyectado para desarrollar actividades Educativas y Recreativas.
               </p>
               <div className="hero-buttons">
                 {!isAuthenticated && (
@@ -45,39 +45,28 @@ const Home = () => {
 
       <section className="features-section">
         <div className="container">
-          <h2 className="section-title section-title-taller">¿Por qué venir al taller?</h2>
-          <div className="features-grid">
-            <Link to="/escuelas" className="feature-card feature-card-link">
-              <div className="feature-icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                  <circle cx="9" cy="7" r="4"/>
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-                </svg>
-              </div>
-              <h3>Para chicos y escuelas</h3>
-              <p>Paseo Pedagógico para escuelas: inicial, primaria, secundaria y más. Reservas por WhatsApp.</p>
-              <span className="feature-card-cta">Ver Proyecto Escuelas 2026 →</span>
-            </Link>
-            <div className="feature-card">
-              <div className="feature-icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                  <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
-                </svg>
-              </div>
-              <h3>Un montón de actividades</h3>
-              <p>Cerámica, huerta, mariposario, tecnología, música, cocina y más. Arte y naturaleza juntos.</p>
+          <h2 className="section-title section-title-taller">Tirua es...</h2>
+          <div className="home-cuadrantes">
+            <div className="home-cuadrante home-cuadrante-espacio-ideal">
+              <h3 className="home-cuadrante-title">El espacio ideal</h3>
+              <ul className="home-cuadrante-lista">
+                <li><span className="home-check" aria-hidden="true">✓</span> Naturaleza: parque, huerta y mariposario</li>
+                <li><span className="home-check" aria-hidden="true">✓</span> Aulas amplias, cómodas y seguras</li>
+                <li><span className="home-check" aria-hidden="true">✓</span> Equipamiento y amoblamiento adaptados para niños</li>
+              </ul>
             </div>
-            <div className="feature-card">
-              <div className="feature-icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                  <polyline points="22 4 12 14.01 9 11.01"/>
-                </svg>
-              </div>
-              <h3>Un lugar cuidado</h3>
-              <p>Grupos chicos (máx. 15), seguro y servicio de emergencia. Todo incluido.</p>
+            <div className="home-cuadrante home-cuadrante-experiencia">
+              <h3 className="home-cuadrante-title">16 años de experiencia</h3>
+              <p className="home-cuadrante-texto">
+                Desarrollando actividades orientadas a crear un ámbito de conocimiento, aprendizaje y expresión a través del Arte.
+              </p>
+            </div>
+            <div className="home-cuadrante home-cuadrante-propuestas">
+              <h3 className="home-cuadrante-title">Propuestas únicas</h3>
+              <ul className="home-cuadrante-lista">
+                <li><span className="home-check" aria-hidden="true">✓</span> Talleres permanentes: abrimos las puertas a la creatividad, expresión, confianza, autoestima e interacción grupal.</li>
+                <li><span className="home-check" aria-hidden="true">✓</span> Visitas: es un placer recibir a grupos de educación inicial, primaria, secundaria, terciaria y Centros de Educación Especial.</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -85,61 +74,20 @@ const Home = () => {
 
       <section className="home-gallery">
         <div className="container">
-          <h2 className="section-title section-title-taller">Así es el taller</h2>
+          <h2 className="section-title section-title-taller">Momentos...</h2>
           <p className="gallery-intro">Algunas fotos del espacio y de lo que hacemos</p>
           <div className="gallery-grid">
             <div className="gallery-item">
-              <img src="/fotos/taller-1.jpg" alt="Espacio del taller Tirùa" onLoad={(e) => e.target.closest('.gallery-item')?.classList.add('loaded')} onError={(e) => { e.target.style.display = 'none'; e.target.closest('.gallery-item')?.classList.remove('loaded'); }} />
+              <img src="/FOTOTALLER.png" alt="Foto del taller Tirùa" onLoad={(e) => e.target.closest('.gallery-item')?.classList.add('loaded')} onError={(e) => { e.target.style.display = 'none'; e.target.closest('.gallery-item')?.classList.remove('loaded'); }} />
               <div className="gallery-placeholder"><span>Foto del taller</span></div>
             </div>
             <div className="gallery-item">
-              <img src="/fotos/taller-2.jpg" alt="Actividades con niños" onLoad={(e) => e.target.closest('.gallery-item')?.classList.add('loaded')} onError={(e) => { e.target.style.display = 'none'; e.target.closest('.gallery-item')?.classList.remove('loaded'); }} />
+              <img src="/ACTIVIDADES.jpeg" alt="Actividades con niños" onLoad={(e) => e.target.closest('.gallery-item')?.classList.add('loaded')} onError={(e) => { e.target.style.display = 'none'; e.target.closest('.gallery-item')?.classList.remove('loaded'); }} />
               <div className="gallery-placeholder"><span>Actividades</span></div>
             </div>
             <div className="gallery-item">
-              <img src="/fotos/taller-3.jpg" alt="Niños creando" onLoad={(e) => e.target.closest('.gallery-item')?.classList.add('loaded')} onError={(e) => { e.target.style.display = 'none'; e.target.closest('.gallery-item')?.classList.remove('loaded'); }} />
+              <img src="/CREANDO.png" alt="Niños creando" onLoad={(e) => e.target.closest('.gallery-item')?.classList.add('loaded')} onError={(e) => { e.target.style.display = 'none'; e.target.closest('.gallery-item')?.classList.remove('loaded'); }} />
               <div className="gallery-placeholder"><span>Creando</span></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="about-section">
-        <div className="container">
-          <div className="about-content">
-            <div className="about-text">
-              <h2 className="section-title-taller">Bienvenidos al taller</h2>
-              <p className="about-description">
-                En San Rafael, Mendoza, tenemos un espacio donde mezclamos arte, juego y aprendizaje. 
-                Vienen chicos y escuelas a explorar, crear y pasarla bien.
-              </p>
-              <p className="about-description">
-                Organizamos todo por edades en tres estaciones: Semillero (5-7), Laboratorio (8-11) 
-                y Aprendíz (12-15). Grupos chicos para que cada uno tenga su lugar.
-              </p>
-              <Link to="/clases" className="btn-primary">
-                Ver actividades
-              </Link>
-            </div>
-            <div className="about-visual">
-              <div className="about-card">
-                <div className="card-content">
-                  <span className="card-number">3</span>
-                  <span className="card-label">Estaciones por edades</span>
-                </div>
-              </div>
-              <div className="about-card">
-                <div className="card-content">
-                  <span className="card-number">15</span>
-                  <span className="card-label">Niños máximo por grupo</span>
-                </div>
-              </div>
-              <div className="about-card">
-                <div className="card-content">
-                  <span className="card-number">11</span>
-                  <span className="card-label">Actividades diferentes</span>
-                </div>
-              </div>
             </div>
           </div>
         </div>

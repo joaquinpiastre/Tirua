@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './ElTaller.css';
 
 const ElTaller = () => {
@@ -10,44 +11,47 @@ const ElTaller = () => {
 
       <section className="taller-content">
         <div className="container">
-          <div className="taller-section taller-section-with-photo">
-            <div className="taller-section-text">
-              <h2 className="taller-section-title">Bienvenidos</h2>
-              <p>
-              Diseñamos y creamos un espacio para niños donde habita el Arte con propuestas educativas y recreativas para experimentarlo
+          <div className="taller-bienvenidos">
+            <div className="taller-bienvenidos-content">
+              <h2 className="taller-bienvenidos-title">Bienvenidos</h2>
+              <p className="taller-bienvenidos-texto">
+                Diseñamos y creamos un espacio para niños donde habita el Arte, con propuestas educativas y recreativas para experimentarlo.
               </p>
-            </div>
-            <div className="taller-section-photo">
-              <div className="taller-photo-wrap">
-                <img src="/fotos/el-taller-espacio.jpg" alt="Espacio del taller" onLoad={(e) => e.target.closest('.taller-photo-wrap')?.classList.add('loaded')} onError={(e) => { e.target.style.display = 'none'; e.target.closest('.taller-photo-wrap')?.classList.remove('loaded'); }} />
-                <div className="taller-photo-placeholder"><span>Foto del espacio</span></div>
-              </div>
             </div>
           </div>
 
-          <div className="taller-cuadrantes">
-            <div className="taller-cuadrante">
-              <h2 className="taller-cuadrante-title">El espacio ideal</h2>
-              <ul className="taller-cuadrante-lista">
-                <li><span className="taller-check" aria-hidden="true">✓</span> Naturaleza: parque, huerta y mariposario</li>
-                <li><span className="taller-check" aria-hidden="true">✓</span> Aulas amplias, cómodas y seguras</li>
-                <li><span className="taller-check" aria-hidden="true">✓</span> Equipamiento y amoblamiento adaptados para niños</li>
-              </ul>
+          <div className="taller-features-grid">
+            <Link to="/escuelas" className="taller-feature-card taller-feature-card-link">
+              <div className="taller-feature-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <h3>Para chicos y escuelas</h3>
+              <p>Paseo Pedagógico para escuelas: inicial, primaria, secundaria y más. Reservas por WhatsApp.</p>
+              <span className="taller-feature-cta">Ver Proyecto Escuelas 2026 →</span>
+            </Link>
+            <div className="taller-feature-card">
+              <div className="taller-feature-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                  <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+              </div>
+              <h3>Un montón de actividades</h3>
+              <p>Cerámica, huerta, mariposario, tecnología, música, cocina y más. Arte y naturaleza juntos.</p>
             </div>
-
-            <div className="taller-cuadrante">
-              <h2 className="taller-cuadrante-title">16 años de experiencia</h2>
-              <p className="taller-cuadrante-texto">
-                Desarrollando actividades orientadas a crear un ámbito de conocimiento, aprendizaje y expresión a través del Arte.
-              </p>
-            </div>
-
-            <div className="taller-cuadrante">
-              <h2 className="taller-cuadrante-title">Propuestas únicas</h2>
-              <ul className="taller-cuadrante-lista">
-                <li><span className="taller-check" aria-hidden="true">✓</span> Talleres permanentes: abrimos las puertas a la creatividad, expresión, confianza, autoestima e interacción grupal.</li>
-                <li><span className="taller-check" aria-hidden="true">✓</span> Visitas: es un placer recibir a grupos de educación inicial, primaria, secundaria, terciaria y Centros de Educación Especial.</li>
-              </ul>
+            <div className="taller-feature-card">
+              <div className="taller-feature-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </div>
+              <h3>Un lugar cuidado</h3>
+              <p>Grupos chicos (máx. 15), seguro y servicio de emergencia. Todo incluido.</p>
             </div>
           </div>
         </div>
