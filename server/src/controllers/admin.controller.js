@@ -284,6 +284,7 @@ export const getUserDetails = async (req, res) => {
         telefono: user.telefono,
         rol: user.rol,
         nombreAlumno: user.nombreAlumno,
+        fichaTecnica: user.fichaTecnica,
         createdAt: user.createdAt,
         updatedAt: user.updatedAt,
         accountStatus,

@@ -16,9 +16,11 @@ import AdminClases from './pages/AdminClases';
 import AdminAgenda from './pages/AdminAgenda';
 import Reportes from './pages/Reportes';
 import Maestro from './pages/Maestro';
+import MaestroAlumnos from './pages/MaestroAlumnos';
 import AdminRoute from './components/AdminRoute';
 import AdminLayout from './components/AdminLayout';
 import MaestroRoute from './components/MaestroRoute';
+import MaestroLayout from './components/MaestroLayout';
 import './App.css';
 
 function AdminRedirect() {
@@ -35,12 +37,14 @@ function AdminRedirect() {
 function AppContent() {
   const location = useLocation();
   const isAdminArea = location.pathname.startsWith('/admin');
+  const isMaestroArea = location.pathname.startsWith('/maestro');
+  const isPanelArea = isAdminArea || isMaestroArea;
 
   return (
     <div className="app">
       <AdminRedirect />
-      {!isAdminArea && <Navbar />}
-      <main className={isAdminArea ? 'main-content admin-full' : 'main-content'}>
+      {!isPanelArea && <Navbar />}
+      <main className={isPanelArea ? 'main-content admin-full' : 'main-content'}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/el-taller" element={<ElTaller />} />
@@ -50,8 +54,11 @@ function AppContent() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/socios" element={<Socios />} />
-          <Route path="/maestro" element={<MaestroRoute><Maestro /></MaestroRoute>} />
-          <Route path="/maestro/agenda" element={<MaestroRoute><AdminAgenda /></MaestroRoute>} />
+          <Route path="/maestro" element={<MaestroRoute><MaestroLayout /></MaestroRoute>}>
+            <Route index element={<Maestro />} />
+            <Route path="agenda" element={<AdminAgenda />} />
+            <Route path="alumnos" element={<MaestroAlumnos />} />
+          </Route>
           <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
             <Route index element={<Admin />} />
             <Route path="profes" element={<AdminMaestros />} />

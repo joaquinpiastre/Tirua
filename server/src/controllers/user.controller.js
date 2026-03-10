@@ -3,7 +3,7 @@ import prisma from '../config/database.js';
 
 export const updateProfile = async (req, res) => {
   try {
-    const { nombre, apellido, email, telefono, nombreAlumno } = req.body;
+    const { nombre, apellido, email, telefono, nombreAlumno, fichaTecnica } = req.body;
     const userId = req.user.id;
 
     // Verificar si el email ya está en uso por otro usuario
@@ -29,6 +29,9 @@ export const updateProfile = async (req, res) => {
         }),
         ...(nombreAlumno !== undefined && { 
           nombreAlumno: (nombreAlumno && nombreAlumno.trim() !== '') ? nombreAlumno.trim() : null 
+        }),
+        ...(fichaTecnica !== undefined && {
+          fichaTecnica: (fichaTecnica && fichaTecnica.trim() !== '') ? fichaTecnica.trim() : null
         })
       },
       select: {
@@ -39,6 +42,7 @@ export const updateProfile = async (req, res) => {
         dni: true,
         telefono: true,
         nombreAlumno: true,
+        fichaTecnica: true,
         rol: true,
         createdAt: true
       }

@@ -250,10 +250,15 @@
   color: var(--color-gris-oscuro);
 }
 
-.escuelas-calendar-nav button:hover {
+.escuelas-calendar-nav button:hover:not(:disabled) {
   background: var(--color-beige);
   border-color: var(--color-verde-agua);
   color: var(--color-verde-agua);
+}
+
+.escuelas-calendar-nav button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .escuelas-calendar-nav span {

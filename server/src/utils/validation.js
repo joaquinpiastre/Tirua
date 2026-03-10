@@ -42,7 +42,10 @@ export const validateRegister = [
   body('nombreAlumno')
     .trim()
     .notEmpty().withMessage('El nombre del alumno es requerido')
-    .isLength({ min: 2, max: 100 }).withMessage('El nombre del alumno debe tener entre 2 y 100 caracteres')
+    .isLength({ min: 2, max: 100 }).withMessage('El nombre del alumno debe tener entre 2 y 100 caracteres'),
+  body('fichaTecnica')
+    .optional({ nullable: true, checkFalsy: true })
+    .isLength({ max: 2000 }).withMessage('La ficha técnica no puede superar los 2000 caracteres')
 ];
 
 // Validación para registro de maestro (solo admin). Sin nombreAlumno.

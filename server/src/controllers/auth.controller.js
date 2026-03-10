@@ -13,7 +13,7 @@ export const register = async (req, res) => {
       });
     }
 
-    const { nombre, apellido, email, password, dni, telefono, nombreAlumno } = req.body;
+    const { nombre, apellido, email, password, dni, telefono, nombreAlumno, fichaTecnica } = req.body;
 
     if (!process.env.JWT_SECRET) {
       console.error('JWT_SECRET no está configurado en las variables de entorno');
@@ -55,7 +55,8 @@ export const register = async (req, res) => {
         dni: normalizedDni,
         telefono: (telefono && telefono.trim() !== '') ? telefono.trim() : null,
         rol: 'socio',
-        nombreAlumno: nombreAlumno ? nombreAlumno.trim() : null
+        nombreAlumno: nombreAlumno ? nombreAlumno.trim() : null,
+        fichaTecnica: fichaTecnica && fichaTecnica.trim() !== '' ? fichaTecnica.trim() : null
       },
       select: {
         id: true,
@@ -66,6 +67,7 @@ export const register = async (req, res) => {
         telefono: true,
         rol: true,
         nombreAlumno: true,
+        fichaTecnica: true,
         createdAt: true
       }
     });
@@ -165,6 +167,7 @@ export const login = async (req, res) => {
         telefono: user.telefono,
         rol: user.rol,
         nombreAlumno: user.nombreAlumno,
+        fichaTecnica: user.fichaTecnica,
         createdAt: user.createdAt
       },
       token
@@ -206,6 +209,7 @@ export const getProfile = async (req, res) => {
         telefono: true,
         rol: true,
         nombreAlumno: true,
+        fichaTecnica: true,
         createdAt: true
       }
     });

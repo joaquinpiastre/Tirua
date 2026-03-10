@@ -18,7 +18,8 @@ const Socios = () => {
     apellido: user?.apellido || '',
     email: user?.email || '',
     telefono: user?.telefono || '',
-    nombreAlumno: user?.nombreAlumno || ''
+    nombreAlumno: user?.nombreAlumno || '',
+    fichaTecnica: user?.fichaTecnica || ''
   });
   const [savingProfile, setSavingProfile] = useState(false);
 
@@ -38,7 +39,8 @@ const Socios = () => {
         apellido: user.apellido || '',
         email: user.email || '',
         telefono: user.telefono || '',
-        nombreAlumno: user.nombreAlumno || ''
+        nombreAlumno: user.nombreAlumno || '',
+        fichaTecnica: user.fichaTecnica || ''
       });
     }
   }, [user]);
@@ -308,6 +310,16 @@ const Socios = () => {
                         <span className="info-value">{user?.nombreAlumno || 'No indicado'}</span>
                       </div>
                     )}
+                    {user?.rol === 'socio' && (
+                      <div className="info-row">
+                        <span className="info-label">Ficha técnica:</span>
+                        <span className="info-value">
+                          {user?.fichaTecnica && user.fichaTecnica.trim() !== ''
+                            ? user.fichaTecnica
+                            : 'No cargada'}
+                        </span>
+                      </div>
+                    )}
                   </div>
                 ) : (
                   <form onSubmit={handleEditProfile} className="profile-edit-form">
@@ -364,6 +376,19 @@ const Socios = () => {
                           value={editFormData.nombreAlumno}
                           onChange={handleEditFormChange}
                           placeholder="Nombre del niño que asiste al taller"
+                        />
+                      </div>
+                    )}
+                    {user?.rol === 'socio' && (
+                      <div className="form-group">
+                        <label htmlFor="edit-fichaTecnica">Ficha técnica del alumno</label>
+                        <textarea
+                          id="edit-fichaTecnica"
+                          name="fichaTecnica"
+                          value={editFormData.fichaTecnica}
+                          onChange={handleEditFormChange}
+                          placeholder="Alergias, necesidades específicas, observaciones importantes para el taller..."
+                          rows={4}
                         />
                       </div>
                     )}

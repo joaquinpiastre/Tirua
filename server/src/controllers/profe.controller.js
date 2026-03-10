@@ -54,3 +54,28 @@ export const getMisHoras = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener horas', error: error.message });
   }
 };
+
+// Listado de alumnos (para profes y admin)
+export const getAlumnos = async (req, res) => {
+  try {
+    const alumnos = await prisma.user.findMany({
+      where: { rol: 'socio' },
+      select: {
+        id: true,
+        nombre: true,
+        apellido: true,
+        email: true,
+        dni: true,
+        telefono: true,
+        nombreAlumno: true,
+        fichaTecnica: true,
+        createdAt: true
+      },
+      orderBy: { createdAt: 'desc' }
+    });
+    res.json({ alumnos });
+  } catch (error) {
+    console.error('Error al obtener alumnos:', error);
+    res.status(500).json({ message: 'Error al obtener alumnos', error: error.message });
+  }
+};

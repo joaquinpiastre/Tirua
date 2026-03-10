@@ -20,6 +20,7 @@ model User {
   telefono      String?
   rol           String    @default("socio")
   nombreAlumno  String?   // Nombre del niño/alumno (para socios); búsqueda por maestro y admin
+  fichaTecnica  String?   // Información técnica / ficha del alumno (opcional)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   payments      Payment[]

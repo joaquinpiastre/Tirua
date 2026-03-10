@@ -268,6 +268,7 @@ const Admin = () => {
                     <p><strong>Email:</strong> {userDetails.email}</p>
                     <p><strong>DNI:</strong> {userDetails.dni}</p>
                     <p><strong>Teléfono:</strong> {userDetails.telefono || 'No proporcionado'}</p>
+                  <p><strong>Ficha técnica:</strong> {userDetails.fichaTecnica && userDetails.fichaTecnica.trim() !== '' ? userDetails.fichaTecnica : 'No cargada'}</p>
                     <p><strong>Estado:</strong> {getStatusBadge(userDetails.accountStatus)}</p>
                   </div>
 

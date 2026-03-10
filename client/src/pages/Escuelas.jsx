@@ -12,6 +12,7 @@ const getDaysInMonth = (year, month) => {
   return days;
 };
 
+// y = año, m = mes en JS (0-11), d = día
 const formatDateKey = (y, m, d) => {
   const mm = String(m + 1).padStart(2, '0');
   const dd = String(d).padStart(2, '0');
@@ -190,9 +191,22 @@ const Escuelas = () => {
             </p>
             <div className="escuelas-calendar-wrap">
               <div className="escuelas-calendar-nav">
-                <button type="button" onClick={() => { if (calMonth === 0) { setCalYear(calYear - 1); setCalMonth(11); } else setCalMonth(calMonth - 1); }}>‹</button>
+                <button
+                  type="button"
+                  disabled={calYear === today.getFullYear() && calMonth === today.getMonth()}
+                  onClick={() => { if (calMonth === 0) { setCalYear(calYear - 1); setCalMonth(11); } else setCalMonth(calMonth - 1); }}
+                  aria-label="Mes anterior"
+                >
+                  ‹
+                </button>
                 <span>{new Date(calYear, calMonth).toLocaleDateString('es-AR', { month: 'long', year: 'numeric' })}</span>
-                <button type="button" onClick={() => { if (calMonth === 11) { setCalYear(calYear + 1); setCalMonth(0); } else setCalMonth(calMonth + 1); }}>›</button>
+                <button
+                  type="button"
+                  onClick={() => { if (calMonth === 11) { setCalYear(calYear + 1); setCalMonth(0); } else setCalMonth(calMonth + 1); }}
+                  aria-label="Mes siguiente"
+                >
+                  ›
+                </button>
               </div>
               <div className="escuelas-calendar-dow">
                 {['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'].map((d) => <span key={d}>{d}</span>)}
@@ -200,7 +214,7 @@ const Escuelas = () => {
               <div className="escuelas-calendar-days">
                 {getDaysInMonth(calYear, calMonth).map((day, i) => {
                   if (day === null) return <div key={`e-${i}`} className="escuelas-cal-day empty" />;
-                  const key = formatDateKey(calYear, calMonth + 1, day);
+                  const key = formatDateKey(calYear, calMonth, day);
                   const delDia = reservas.filter((r) => r.fecha === key);
                   const manana = delDia.some((r) => r.turno === 'mañana');
                   const tarde = delDia.some((r) => r.turno === 'tarde');

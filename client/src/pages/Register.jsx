@@ -11,7 +11,8 @@ const Register = () => {
     password: '',
     dni: '',
     telefono: '',
-    nombreAlumno: ''
+    nombreAlumno: '',
+    fichaTecnica: ''
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -158,6 +159,18 @@ const Register = () => {
               name="telefono"
               value={formData.telefono}
               onChange={handleChange}
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="fichaTecnica">Ficha técnica del alumno (opcional)</label>
+            <textarea
+              id="fichaTecnica"
+              name="fichaTecnica"
+              value={formData.fichaTecnica}
+              onChange={handleChange}
+              placeholder="Anota aquí datos relevantes del alumno: alergias, necesidades específicas, información que ayude en el taller..."
+              rows={4}
             />
           </div>
 
