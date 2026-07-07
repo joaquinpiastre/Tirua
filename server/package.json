@@ -4,8 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "node --watch src/index.js",
-    "start": "node src/index.js",
-    "build": "prisma generate && prisma migrate deploy",
+    "start": "prisma migrate deploy && node src/index.js",
+    "build": "prisma generate",
     "postinstall": "prisma generate",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
