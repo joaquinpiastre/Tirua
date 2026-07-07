@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
-import PaymentCalendar from '../components/PaymentCalendar';
 import ProtectedRoute from '../components/ProtectedRoute';
 import './Socios.css';
 
@@ -9,9 +8,7 @@ const Socios = () => {
   const { user, updateProfile, fetchProfile } = useAuth();
   const [paymentStatus, setPaymentStatus] = useState(null);
   const [payments, setPayments] = useState([]);
-  const [selectedMonths, setSelectedMonths] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [processingPayment, setProcessingPayment] = useState(false);
   const [showEditProfile, setShowEditProfile] = useState(false);
   const [editFormData, setEditFormData] = useState({
     nombre: user?.nombre || '',
@@ -59,63 +56,6 @@ const Socios = () => {
       alert('Error al cargar los datos');
     } finally {
       setLoading(false);
-    }
-  };
-
-  const calculateAmount = (mes, ano) => {
-    const today = new Date();
-    const todayDay = today.getDate();
-    const todayMonth = today.getMonth() + 1;
-    const todayYear = today.getFullYear();
-    const baseAmount = 5000;
-    
-    // Si estamos pagando un mes pasado o el mes actual después del día 10, aplicar 20% de aumento
-    if (ano < todayYear || (ano === todayYear && mes < todayMonth)) {
-      // Mes pasado: siempre con aumento
-      return baseAmount * 1.2;
-    } else if (ano === todayYear && mes === todayMonth && todayDay > 10) {
-      // Mes actual pero después del día 10: con aumento
-      return baseAmount * 1.2;
-    }
-    
-    return baseAmount;
-  };
-
-  const handlePayMonths = async () => {
-    if (selectedMonths.length === 0) {
-      alert('Por favor, selecciona al menos un mes');
-      return;
-    }
-
-    setProcessingPayment(true);
-    try {
-      // Calcular montos con aumento si corresponde
-      const paymentsWithAmounts = selectedMonths.map(({ mes, ano }) => ({
-        mes,
-        ano,
-        monto: calculateAmount(mes, ano)
-      }));
-
-      const response = await api.post('/payments/create-multiple', {
-        meses: selectedMonths,
-        monto: 5000 // Monto base, el cálculo del aumento se hace en el backend si es necesario
-      });
-
-      if (response.data.payments && response.data.payments.length > 0) {
-        const firstPayment = response.data.payments[0];
-        if (firstPayment.initPoint) {
-          window.location.href = firstPayment.initPoint;
-        } else {
-          alert('Error al generar el link de pago');
-        }
-      } else {
-        alert('Error al procesar el pago');
-      }
-    } catch (error) {
-      console.error('Error al procesar pago:', error);
-      alert(error.response?.data?.message || 'Error al procesar el pago');
-    } finally {
-      setProcessingPayment(false);
     }
   };
 
@@ -196,8 +136,8 @@ const Socios = () => {
                       </div>
                       <div className="info-row">
                         <span className="info-label">Método:</span>
-                        <span className={`payment-method payment-method-${paymentStatus.pagoMesActual.metodoPago}`}>
-                          {paymentStatus.pagoMesActual.metodoPago === 'efectivo' ? '💰 Efectivo' : '🌐 Web'}
+                        <span className="payment-method payment-method-efectivo">
+                          💰 Efectivo
                         </span>
                       </div>
                     </div>
@@ -219,55 +159,16 @@ const Socios = () => {
 
               <div className="payment-card">
                 <div className="card-header">
-                  <h2>Pagar Cuota Mensual</h2>
-                  <p className="card-description">Selecciona uno o más meses para pagar</p>
+                  <h2>Pago de Cuota Mensual</h2>
                 </div>
-                
+
                 <div className="payment-warning">
-                  <div className="warning-icon">⚠️</div>
+                  <div className="warning-icon">ℹ️</div>
                   <div className="warning-content">
-                    <strong>Importante:</strong> Si pagas después del día 10 de cada mes, la cuota aumenta un 20%.
+                    <strong>Para registrar tu pago, contactá al administrador.</strong>
                     <br />
-                    <span className="warning-detail">Cuota base: $5.000 | Con recargo (después del 10): $6.000</span>
+                    <span className="warning-detail">El administrador cargará tu pago manualmente y podrás ver el estado actualizado en esta página.</span>
                   </div>
-                </div>
-
-                <PaymentCalendar 
-                  onSelectMonths={setSelectedMonths}
-                  selectedMonths={selectedMonths}
-                />
-                
-                {selectedMonths.length > 0 && (
-                  <div className="payment-summary">
-                    {selectedMonths.map(({ mes, ano }) => {
-                      const amount = calculateAmount(mes, ano);
-                      const hasIncrease = amount > 5000;
-                      return (
-                        <div key={`${ano}-${mes}`} className="month-summary-item">
-                          <span>{monthNames[mes - 1]} {ano}:</span>
-                          <span className={hasIncrease ? 'amount-with-increase' : ''}>
-                            ${amount.toLocaleString('es-AR')}
-                            {hasIncrease && <span className="increase-badge">+20%</span>}
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-
-                <div className="payment-actions">
-                  <button
-                    onClick={handlePayMonths}
-                    className="btn-primary btn-pay"
-                    disabled={processingPayment || selectedMonths.length === 0}
-                  >
-                    {processingPayment ? 'Procesando...' : `Pagar ${selectedMonths.length} mes${selectedMonths.length !== 1 ? 'es' : ''}`}
-                  </button>
-                  {selectedMonths.length > 0 && (
-                    <p className="payment-total">
-                      Total: ${selectedMonths.reduce((sum, { mes, ano }) => sum + calculateAmount(mes, ano), 0).toLocaleString('es-AR')}
-                    </p>
-                  )}
                 </div>
               </div>
 
@@ -430,8 +331,7 @@ const Socios = () => {
                   <ul className="payments-list">
                     {payments.map((payment) => {
                       const monthName = payment.mes ? monthNames[payment.mes - 1] : '';
-                      const metodoPago = payment.esManual ? 'efectivo' : (payment.mpPaymentId ? 'web' : 'desconocido');
-                      
+
                       return (
                         <li key={payment.id} className="payment-item">
                           <div className="payment-item-header">
@@ -448,8 +348,8 @@ const Socios = () => {
                             <span className="payment-amount">
                               ${payment.monto?.toLocaleString('es-AR')}
                             </span>
-                            <span className={`payment-method payment-method-${metodoPago}`}>
-                              {metodoPago === 'efectivo' ? '💰 Efectivo' : '🌐 Web'}
+                            <span className="payment-method payment-method-efectivo">
+                              💰 Efectivo
                             </span>
                           </div>
                         </li>

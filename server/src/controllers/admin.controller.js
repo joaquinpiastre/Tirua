@@ -148,7 +148,7 @@ export const getAllUsers = async (req, res) => {
           fechaPago: lastPayment.fechaPago,
           createdAt: lastPayment.createdAt,
           esManual: lastPayment.esManual,
-          metodoPago: lastPayment.esManual ? 'efectivo' : (lastPayment.mpPaymentId ? 'web' : 'desconocido')
+          metodoPago: lastPayment.esManual ? 'efectivo' : 'desconocido'
         } : null,
         pagoMesActual: pagoMesActual ? {
           id: pagoMesActual.id,
@@ -157,7 +157,7 @@ export const getAllUsers = async (req, res) => {
           ano: pagoMesActual.ano,
           fechaPago: pagoMesActual.fechaPago,
           esManual: pagoMesActual.esManual,
-          metodoPago: pagoMesActual.esManual ? 'efectivo' : (pagoMesActual.mpPaymentId ? 'web' : 'desconocido')
+          metodoPago: pagoMesActual.esManual ? 'efectivo' : 'desconocido'
         } : null
       };
     }).filter(user => user !== null);
@@ -297,11 +297,11 @@ export const getUserDetails = async (req, res) => {
           ano: pagoMesActual.ano,
           fechaPago: pagoMesActual.fechaPago,
           esManual: pagoMesActual.esManual,
-          metodoPago: pagoMesActual.esManual ? 'efectivo' : (pagoMesActual.mpPaymentId ? 'web' : 'desconocido')
+          metodoPago: pagoMesActual.esManual ? 'efectivo' : 'desconocido'
         } : null,
         payments: user.payments.map(p => ({
           ...p,
-          metodoPago: p.esManual ? 'efectivo' : (p.mpPaymentId ? 'web' : 'desconocido')
+          metodoPago: p.esManual ? 'efectivo' : 'desconocido'
         }))
       }
     });
